@@ -1,0 +1,10 @@
+.btn-outline-primary{
+    --bs-btn-font-weight: 600;
+    --bs-btn-hover-bg: #5d2f82;
+}
+.button-container{
+    display: flex;
+    justify-content: center; /* Centrar horizontalmente los elementos */
+    align-items: center; /* Centrar verticalmente los elementos */
+    height: 100px; /* Opcional: ajusta la altura del contenedor */
+}
