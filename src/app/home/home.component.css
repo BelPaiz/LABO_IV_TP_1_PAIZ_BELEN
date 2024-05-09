@@ -1,0 +1,49 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Retro Gaming';
+}
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
+    height: 100vh; 
+    padding: 10px;
+    background: url(../../assets/2.gif);
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-position: center; 
+}
+.btn-outline-primary{
+    --bs-btn-font-weight: 600;
+    background: #000;
+    margin: 10px;
+    width: 350px; /*fijo tamaño de los botones*/
+    text-transform: uppercase;
+    font-size: xx-large;
+}
+.btn-outline-primary:hover{
+    background:  #5d2f82;
+}
+.button-container{
+    display: flex;
+    justify-content: center; /* Centrar horizontalmente*/
+    align-items: center; /* Centrar verticalmente */
+    height: 100px; /* altura del contenedor */
+    flex-direction: column; 
+    padding-top: 5vh;
+    padding-bottom: 15vh;
+}
+audio{
+    width: 100px;
+    
+}
+@font-face {
+    font-family: 'Retro Gaming';
+    src: url(../../assets/fonts/Retro\ Gaming.ttf);
+}
+.ocultar{
+    display: none;
+}

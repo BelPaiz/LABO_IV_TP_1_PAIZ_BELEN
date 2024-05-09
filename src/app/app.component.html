@@ -1,10 +1,19 @@
+<header>
+  <a href="#"><div class="logo"><h1>NIVEL X</h1></div></a>
+  <nav>
+      <ul class="nav-container">
+          <li><a class="navbar-brand" routerLink="home" routerLinkActive="active-route">INICIO</a></li>
+          <li><a class="navbar-brand" routerLink="login" routerLinkActive="active-route">INICIA SESION</a></li>
+          <li><a class="navbar-brand" routerLink="registro" routerLinkActive="active-route">REGISTRATE</a></li>
+          <li><a class="navbar-brand" routerLink="quienSoy" routerLinkActive="active-route">ACERCA DE MI</a></li>
+      </ul>
+  </nav>
+</header>
 
-<div class="button-container">
-  <button class="btn btn-outline-primary"  routerLink="home" routerLinkActive="active-route" >Home</button>
-  <button class="btn btn-outline-primary" routerLink="login" routerLinkActive="active-route"  >Login</button>
-  <button class="btn btn-outline-primary" routerLink="quienSoy" routerLinkActive="active-route"  >Quien Soy</button>
-  <!-- <button (click)="goTo('products')" > Productos</button> -->
-</div>
 
-
+<footer>
+  <div class="footer-container">
+      <p class="copy">Paiz Belen 2024 &copy;</p>
+  </div>
+</footer>
 <router-outlet />

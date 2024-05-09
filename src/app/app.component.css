@@ -1,10 +1,69 @@
-.btn-outline-primary{
-    --bs-btn-font-weight: 600;
-    --bs-btn-hover-bg: #5d2f82;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Retro Gaming';
 }
-.button-container{
+
+header{
+    background: rgba(0,0,0,0.8);
     display: flex;
-    justify-content: center; /* Centrar horizontalmente los elementos */
-    align-items: center; /* Centrar verticalmente los elementos */
-    height: 100px; /* Opcional: ajusta la altura del contenedor */
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    box-shadow: 0 0 10px #000;
+    padding: 20px;    
+}
+header .logo{
+    flex: 1;
+    color: white;
+    margin-left: 50px;
+    text-transform: uppercase;
+    background-color: #000;
+}
+.nav-container {
+    display: flex;
+    justify-content: space-evenly;
+}
+.navbar-brand{
+    color: white;
+    margin-left: 15px;
+}
+.navbar-brand:hover{
+    font-size: large;
+    border-bottom: 2px solid cadetblue;
+}
+.logo :hover{
+    font-size: 4vh;
+    border-bottom: 2px solid cadetblue;
+}
+@media (max-width: 665px) {
+    .nav-container {
+        flex-direction: column; 
+        padding: 10px;
+    }    
+    header .logo{
+        margin-left: 5px;
+    }
+}
+.footer-container{
+    background: rgba(0,0,0,0.8);
+    display: flex;
+    justify-content: flex-end;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    color: white; 
+    padding-top: 5px;
+    padding-right: 15px;
+    padding-bottom: 2vh;
+}
+
+@font-face {
+    font-family: 'Retro Gaming';
+    src: url(../assets/fonts/Retro\ Gaming.ttf);
+}
+.ocultar{
+    display: none;
 }
