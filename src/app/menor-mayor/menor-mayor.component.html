@@ -1,0 +1,43 @@
+<body>
+  <div class="container-1" [ngClass]="{'ocultarJuego': ocultarJuego}">
+    <div class="texto1"><p><strong>¿LA SIGUIENTE CARTA SERÁ MENOR O MAYOR A LA ACTUAL?</strong></p>
+    </div>
+  </div>
+    <div class="container" [ngClass]="{'ocultarJuego': ocultarJuego}">
+      <button type="button" class="btn btn-primary" (click)="seleccionoMenor()">MENOR</button>
+      <div class="card" style="width: 15rem;">
+        <img class="card-img-top carta-activa" [src]="carta_elegida.src" alt="Card image cap">
+      </div>
+      <button type="button" class="btn btn-primary" (click)="seleccionoMayor()">MAYOR</button>
+    </div>
+    <div class="container-2" [ngClass]="{'ocultarJuego': ocultarJuego}">
+      <div class="puntos">
+        <p>PUNTOS:</p>
+        <P><strong>{{contadorPuntos}}</strong></P>
+      </div>
+      <div class="puntos2">
+        <p>MAZO:</p>
+        <P><strong>{{cartas_usadas.length}}</strong></P>
+        <p>cartas</p>
+      </div>
+      <div class="texto1"><p><strong>INICIAR NUEVA PARTIDA --->> </strong></p></div> 
+      <div class="card btnEnviar" (click)="EmpezarJuego()" style="width: 5rem; margin: 10px;">
+        <img class="card-img-top carta-reverso" [src]="reverso" alt="Card image cap">
+      </div>
+       
+    </div>
+
+    <div class="container gano-container" [ngClass]="{'finalJuego': finalJuego}"> 
+      <div class="text-container">
+          <h1 class="display-1">HICISTE <br> {{contadorPuntos}} <br> PUNTOS</h1>
+      </div>
+      <div class="new-game-container">
+          <button class=" btn btn-primary new-game-button" (click)="EmpezarJuego()">NUEVA PARTIDA</button>
+      </div>
+  </div>
+
+    <div class="button-container" >
+        <button class="btn btn-outline-primary" (click)="salirJuego()" >SALIR</button> 
+      </div>
+    
+</body>

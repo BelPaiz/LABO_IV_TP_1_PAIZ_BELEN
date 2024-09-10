@@ -1,0 +1,162 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', 'Poppins-light';
+}
+  body {
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    flex-direction: column;
+    height: 100vh; 
+    width: 100vw;
+    background: url(../../assets/fondo7.jpg);
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-position: center; 
+}
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 55vh;
+    width: 60vw;
+    flex-direction: row; 
+    padding-top: 5vh;
+    padding-bottom: 5vh;
+    background: blueviolet;
+    
+}
+.btn-primary{
+    padding: 5px;
+    margin: 10%;
+}
+.container-1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 5vh;
+    width: 60vw;
+    flex-direction: column; 
+    padding-top: 3px;
+    background: rgb(160, 91, 226);
+}
+.container-2{
+    display: flex;
+    justify-content:end;
+    align-items:flex-end;
+    height: 15vh;
+    width: 60vw;
+    flex-direction: row; 
+    padding-top: 5vh;
+    background: blueviolet;
+    
+}
+.texto1{
+    height: 100%;
+}
+
+.carta-reverso{
+    display: flex;
+    padding: 5px;    
+}
+.button-container{
+    position: fixed;
+    bottom: 7%;
+}
+.btn-outline-primary{
+    --bs-btn-font-weight: 600;
+    background: #000;
+    margin: 5px;
+    width: 150px;
+    text-transform: uppercase;
+    font-size: large;
+}
+.btn-outline-primary:hover{
+    background:  #5d2f82;
+}
+.puntos{
+    position: fixed;
+    align-self:flex-start;
+    left: 25%;
+    background: #9c88ad;
+    text-align: center;
+}
+.puntos2{
+    position: fixed;
+    align-self:flex-start;
+    left: 25%;
+    bottom: 25%;
+    background: #9c88ad;
+    text-align: center;
+}
+.btnEnviar:active{
+    transform: scale(0.5);
+}
+.ocultarJuego{
+    display: none;
+}
+
+.text-container{
+    text-align: center;
+}
+.gano-container{
+    flex-direction: column; 
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+.new-game-container{
+    display: flex;
+    height: 25%;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+.finalJuego{
+    display: block;
+}
+.new-game-button{
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+@media (max-width: 665px){
+    .container{
+        height: 55vh;
+        width: 95vw;
+        flex-direction: column; 
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .container-1{
+        height: 5vh;
+        width: 95vw;
+        padding-top: 3px;
+        text-align: center;
+        font-size: small;
+    }
+    .container-2{
+        height: 10vh;
+        width: 95vw;
+        padding-top: 5px;
+    }
+    .btn-outline-primary{
+        --bs-btn-font-weight: 400;
+        margin: 3px;
+        width: 150px;
+    }
+    .btn-primary{
+        padding: 5px;
+        margin: 5%;
+    }
+    .puntos{   
+        left: 5%;
+        bottom: 16%;
+    }
+    .puntos2{
+        left: 5%;
+        bottom: 26%; 
+    }
+}

@@ -5,4 +5,5 @@ export const environment =
     storageBucket:"nivel-x--app.appspot.com",
     apiKey:"AIzaSyCCZABB1k-EAp41uPaZ09sUkqJXauPAb8o",
     authDomain:"nivel-x--app.firebaseapp.com",
-    messagingSenderId:"45966276192"}
+    messagingSenderId:"45966276192"
+}

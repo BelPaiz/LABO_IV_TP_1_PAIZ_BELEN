@@ -4,6 +4,9 @@ import { FormsModule } from '@angular/forms';
 import { RegistroComponent } from '../registro/registro.component';
 import { Usuario } from '../models/usuario.models';
 import { FirestoreService } from '../services/firestore.service';
+import { AuthenService } from '../services/authen.service';
+import { Router } from '@angular/router';
+import { DataService } from '../services/data.service';
 
 
 @Component({
@@ -15,32 +18,37 @@ import { FirestoreService } from '../services/firestore.service';
 })
 export class LoginComponent {
 
-  user:string = "";
+  email:string = "";
+  clave:string = "";
   logsCol:any[] = [];
   counts:number = 0;
+  usuarioLogueado:string = "";
+  error:string = "";
+  usuarioDefecto: string = "belen@mail.com";
+  passDefecto: string = "123456";
 
-  constructor(private firestore:FirestoreService){}
+  constructor(private firestore:FirestoreService,
+    private auth:AuthenService,
+    private router:Router
+  ){}
 
   login(){
-    this.firestore.loginRegister(this.user);
+    this.auth.Login(this.email, this.clave)
+    .then((res) => {
+      if(res.user.email != null) this.usuarioLogueado = res.user.email;
+      this.firestore.loginRegister(this.usuarioLogueado);
+      this.router.navigate(['/home']);
+    }).catch((e) => {if(e = 'auth/invalid-credential'){
+      this.error = "Usuario y/o contraseña invalido"
+      console.log(this.error)
+    }});
   }
   getData(){
     this.firestore.getData(this.counts, this.logsCol);
   }
-
-
-
+  rellenarUsuario(){
+    this.email = this.usuarioDefecto;
+    this.clave = this.passDefecto;
   }
-  
-  // verifica(user: Usuario){
-  //   if(this.nombre == user.nombre && this.pass == user.pass){
-  //     this.login_aceptado = true;
-  //   }
-  // }
-  // ingreso(){
-  //   let user = new Usuario(this.nombreIngresado, this.passIngresado);
-  //   this.verifica(user);
-  //   this.clickEnviar = true;
-  //   this.mostrarForm = false;
-  // }
+  }
 

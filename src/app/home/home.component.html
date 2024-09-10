@@ -1,10 +1,16 @@
 <body>
-    <div class="button-container" >
-      <button class="btn btn-outline-primary"routerLink="/login" routerLinkActive="active-route" >INICIA SESION</button>
-      <button class="btn btn-outline-primary"  routerLink="/registro" routerLinkActive="active-route" >REGISTRATE</button>
-      <button class="btn btn-outline-primary" routerLink="/quienSoy" routerLinkActive="active-route"  >ACERCA DE MI</button>
+  <div class="container">
+    <div class="card"  (click)="irChat()">
+      <img class="btnEnviar" src="../../assets/chat.jpg"  alt="send message">
     </div>
-    <div class="audio-container" >
-    <audio controls  src="../../assets/audio/Nivel X theme song Ful.mp3" type="audio/mp3">Tu navegador no soporta el audio</audio>
+    <div class="card"  (click)="irAhorcado()">
+      <img class="btnEnviar" src="../../assets/ahorcado.jpg"  alt="send message">
     </div>
-  </body>
+    <div class="card"  (click)="irmayor_menor()">
+      <img class="btnEnviar" src="../../assets/meyor-menor.jpg"  alt="send message">
+    </div>
+    <div class="card"  (click)="irDragon_triviar()">
+      <img class="btnEnviar" src="../../assets/trivia1.jpg"  alt="send message">
+    </div>
+  </div>
+</body>

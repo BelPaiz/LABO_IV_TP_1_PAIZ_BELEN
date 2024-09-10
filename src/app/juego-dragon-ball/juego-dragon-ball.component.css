@@ -1,0 +1,125 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', 'Poppins-light';
+}
+  body {
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    flex-direction: column;
+    height: 100vh; 
+    width: 100vw;
+    background: url(../../assets/fondo7.jpg);
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-position: center; 
+}
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 45vh;
+    width: 60vw;
+    flex-direction: column; 
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    background: blueviolet;
+    
+}
+.card {
+    width: 15rem;
+    overflow: hidden;
+  }
+.card-img-top {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    display: block;
+    object-fit: contain;
+  }
+  .btn-outline-primary{
+    --bs-btn-font-weight: 600;
+    background: #000;
+    margin: 5px;
+    width: 150px;
+    text-transform: uppercase;
+    font-size: large;
+}
+.btn-outline-primary:hover{
+    background:  #5d2f82;
+}
+.container-1{
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    height: 5vh;
+    width: 60vw;
+    flex-direction: column; 
+    padding-top: 2vh;
+    background: blueviolet;
+    
+}
+.container-2{
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    height: 20vh;
+    width: 60vw;
+    flex-direction: column; 
+    padding-top: 2vh;
+    background: blueviolet;
+    
+}
+p{
+    text-align: center;
+}
+.puntos2{
+    position: fixed;
+    align-self:flex-start;
+    left: 25%;
+    top: 70%;
+    background: #9c88ad;
+    text-align: center;
+}
+.gano-container{
+    flex-direction: column; 
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+.finalJuego{
+    display: block;
+}
+.ocultarJuego{
+    display: none;
+}
+@media (max-width: 665px){
+    .container{
+        width: 95vw;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .container-1{
+        height: 5vh;
+        width: 95vw;
+        padding-top: 3px;
+        text-align: center;
+        font-size: small;
+    }
+    .container-2{
+        height: 10vh;
+        width: 95vw;
+        padding-top: 5px;
+    }
+    .btn-outline-primary{
+        --bs-btn-font-weight: 400;
+        margin: 3px;
+        width: 150px;
+    }
+    .puntos2{
+        left: 5%;
+        top: 70%;
+    }
+}

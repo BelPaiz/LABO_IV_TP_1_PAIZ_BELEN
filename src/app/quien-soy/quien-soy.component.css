@@ -2,36 +2,37 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Retro Gaming';
+    font-family: 'Poppins', 'Poppins-light';
 }
 body{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items:center;
-    background: url(../../assets/2.gif);
+    background: url(../../assets/fondo7.jpg);
     background-size:cover;
     background-repeat: no-repeat;
     background-position: center; 
+    height: auto;
 }
 .container{
+    
     display: flex;
-    justify-content: center; /* Centrar horizontalmente*/
-    align-items: center; /* Centrar verticalmente */
+    justify-content: center;
+    align-items: center;
     flex-direction: row; 
-    margin-top: 15vh; 
-    margin-bottom: 15vh; 
-    padding-top: 5vh;
-    padding-bottom: 10vh;
+    padding: 5%;
     background: rgba(0,0,0,0.8);
+   height: 95vh;
 }
 .foto-container,
 .datos-container{
     display: flex;
     flex-direction: column;
+    padding-top: 3vh; 
 }
 .foto-container{
-    width: 20%;
+    width: 15%;
     align-self: flex-start;
     margin: 5%;
     height: 5%;
@@ -43,10 +44,6 @@ body{
     margin-right: 10%;
     color: white;
 }
-audio{
-    width: 100px;
-    margin-top: 10%;
-}
 .textos p{
     text-align: justify;
 }
@@ -56,23 +53,41 @@ ul{
 .datos-container h3{
     text-align: center;
 }
+li,
+p{
+    font-family:'Poppins-light';
+}
 @media (max-width: 665px) {
     .container{
         flex-direction: column; 
+        position: relative;
+        margin-top: 10%;
+        width: 100%;
+        height: auto;
     }
     .foto-container{
+        
         width: 30%;
         align-self: center;
+        margin-top: 5vh;
+        margin-bottom: 2rem;
+        
     } 
     .datos-container{
         width: 90%;
-        margin: 10%;
+        height: auto;
+        margin-left: 10%;
+        margin-bottom: 5%;
     }
     ul{
         margin-left: 15%;
     }
 }
 @font-face {
-    font-family: 'Retro Gaming';
-    src: url(../../assets/fonts/Retro\ Gaming.ttf);
+    font-family: 'Poppins';
+    src: url(../../assets/fonts/Poppins.ttf)
+}
+@font-face {
+    font-family: 'Poppins-light';
+    src: url(../../assets/fonts/Poppins-Light.ttf);
 }

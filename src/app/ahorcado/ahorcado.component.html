@@ -1,0 +1,54 @@
+<body>
+    <div class="container" [ngClass]="{'ocultarJuego': ocultarJuego}">
+        <div class="letras-container">
+            <button class="letra" *ngFor="let letra of letras_en_uso"  (click)="letraSeleccion(letra)">{{letra}}</button>
+        </div>
+        <div class="palabra-container">
+            <button class="letra  letra-palabra" *ngFor="let letra of letras_espacios" >{{letra}}</button>
+        </div>
+        <div class="dibujo-container">
+            <div class="ahorcado">
+                <div class="poste"></div>
+                <div class="poste2"></div>
+                <div class="cuerda"></div>
+                <div class="cabeza" [ngClass]="{'ocultarCabeza': ocultarCabeza}"></div>
+                <div class="cuerpo" [ngClass]="{'ocultarCabeza': ocultarCabeza}"></div>
+                <div class="brazo-izquierdo" [ngClass]="{'ocultarBrazoI': ocultarBrazoI}"></div>
+                <div class="brazo-derecho" [ngClass]="{'ocultarBrazoD': ocultarBrazoD}"></div>
+                <div class="pierna-izquierda" [ngClass]="{'ocultarPieI': ocultarPieI}"></div>
+                <div class="pierna-derecha" [ngClass]="{'ocultarPieD': ocultarPieD}"></div>
+              </div>
+        </div>
+        <div class="new-game-container">
+            <button class=" btn btn-primary new-game-button" (click)="generarPalabra()">COMENZAR</button>
+        </div>
+        <div class="pista-container">
+            <p class="h6">PISTA TU PALABRA ES DE TIPO: {{palabraElegida.tipo.toUpperCase()}}</p>
+        </div>
+    </div>
+
+    <div class="container gano-container" [ngClass]="{'ganoJuego': ganoJuego}"> 
+        <div class="text-container">
+            <h1 class="display-1">¡GANASTE!</h1>
+        </div>
+        <div class="new-game-container">
+            <button class=" btn btn-primary new-game-button" (click)="generarPalabra()">NUEVA PARTIDA</button>
+        </div>
+    </div>
+
+    <div class="container gano-container" [ngClass]="{'ganoJuego': pierdeJuego}"> 
+        <div class="text-container">
+            <h1 class="display-1">¡PERDISTE!</h1>
+        </div>
+        <div class="new-game-container">
+            <button class=" btn btn-primary new-game-button" (click)="generarPalabra()">NUEVA PARTIDA</button>
+        </div>
+        <div class="pistaFinal-container">
+            <p class="h6">TU PALABRA ERA: {{palabraElegida.palabra.toUpperCase()}}</p>
+        </div>
+    </div>
+    <div class="button-container" >
+        <button class="btn btn-outline-primary" (click)="salirJuego()" >SALIR</button> 
+      </div>
+    
+</body>

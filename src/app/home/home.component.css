@@ -10,40 +10,45 @@ body{
     justify-content: center;
     align-items:center;
     height: 100vh; 
-    padding: 10px;
-    background: url(../../assets/2.gif);
+    padding: 5%;
+    background: url(../../assets/fondo7.jpg);
     background-size:cover;
     background-repeat: no-repeat;
     background-position: center; 
 }
-.btn-outline-primary{
-    --bs-btn-font-weight: 600;
-    background: #000;
-    margin: 10px;
-    width: 350px; /*fijo tamaño de los botones*/
-    text-transform: uppercase;
-    font-size: xx-large;
-}
-.btn-outline-primary:hover{
-    background:  #5d2f82;
-}
-.button-container{
+.container{
     display: flex;
-    justify-content: center; /* Centrar horizontalmente*/
-    align-items: center; /* Centrar verticalmente */
-    height: 100px; /* altura del contenedor */
-    flex-direction: column; 
-    padding-top: 5vh;
-    padding-bottom: 15vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
+    height: 90vh; 
+    padding: 5%;
+    width: 40vw;
+
 }
-audio{
-    width: 100px;
-    
+.card {
+    width: 100%; 
+    height: 25%;
+    overflow: hidden;
+    margin: 5px;
+  }
+.btnEnviar{
+    width: 100%;
+    height: 100%;
+    padding: 5px;
 }
 @font-face {
     font-family: 'Retro Gaming';
     src: url(../../assets/fonts/Retro\ Gaming.ttf);
 }
-.ocultar{
-    display: none;
+@media (max-width: 665px){
+    .container{
+        width: 95vw;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        margin-top: 15%;
+    }
+    .card {
+        height: 20%;
+      }
 }

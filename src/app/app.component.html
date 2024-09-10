@@ -1,15 +1,23 @@
 <header>
-  <a href="#"><div class="logo"><h1>NIVEL X</h1></div></a>
-  <nav>
-      <ul class="nav-container">
-          <li><a class="navbar-brand" routerLink="home" routerLinkActive="active-route">INICIO</a></li>
-          <li><a class="navbar-brand" routerLink="login" routerLinkActive="active-route">INICIA SESION</a></li>
-          <li><a class="navbar-brand" routerLink="registro" routerLinkActive="active-route">REGISTRATE</a></li>
-          <li><a class="navbar-brand" routerLink="quienSoy" routerLinkActive="active-route">ACERCA DE MI</a></li>
-      </ul>
+  <a href="#"><h2 class="logo">NIVEL X</h2></a>
+  
+  <nav class="nav-container">
+    <button class="menu" (click)="muestraMenu()" ><i class="bi bi-list"></i></button>
+    <div class="user-dropdown" (click)="toggleDropdown()">
+      <button class="user-button dropdown-toggle"  type="button" id="dropdownMenuButton" aria-expanded="false"*ngIf="usuario">{{usuario}}</button>
+      <div class="dropdown-menu" *ngIf="dropdownOpen">
+        <button (click)="cerrarSesion()">Salir</button>
+      </div>
+    </div>
+          <a class="navbar-brand" [ngClass]="{'mostrar': mostrar}" routerLink="home" routerLinkActive="active-route">INICIO</a>
+
+          <a class="navbar-brand" [ngClass]="{'ocultar': ocultar, 'mostrar': mostrar && !ocultar}" routerLink="registro" routerLinkActive="active-route">REGISTRATE</a>
+
+          <a class="navbar-brand" [ngClass]="{'mostrar': mostrar}" routerLink="quienSoy"  routerLinkActive="active-route">ACERCA DE MI</a>
+
+          <a class="navbar-brand" [ngClass]="{'ocultar': ocultar, 'mostrar': mostrar && !ocultar}" routerLink="login" routerLinkActive="active-route">INICIA SESION</a>          
   </nav>
 </header>
-
 
 <footer>
   <div class="footer-container">

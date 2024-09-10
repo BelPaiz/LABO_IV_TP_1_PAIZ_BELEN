@@ -1,0 +1,29 @@
+<body>
+    
+    <div class="card text-center card-container" *ngIf="usuario">
+        <div class="card-header">
+          CHAT
+        </div>
+        <div class="card-body mensajes-container" #mensajesContainer id="mensajes-container">
+            <div *ngFor="let mensaje of mensajes" class="msj p-2" [ngClass]="(usuario == mensaje.user) ? 'enviado' : 'recibido'">
+              <p class="maneUser">{{ mensaje.user }} dijo: </p> 
+              <p>{{ mensaje.text }}</p> 
+              <p class="fecha">{{ formatDateTime(mensaje.time) }} </p>
+            </div>
+          </div>
+        <form class="card-footer text-muted input-group" (ngSubmit)="enviarMensaje()">
+            <input type="text" class="form-control" placeholder="Ingrese su mensaje" [(ngModel)] = "nuevoMensaje" [ngModelOptions]="{standalone: true}">
+            <div class="input-group-append" (click)="enviarMensaje()">
+                <span class="input-group-text" id="basic-addon2">
+                    <img class="btnEnviar" src="https://cdn-icons-png.flaticon.com/512/786/786407.png" width="20px" alt="send message">
+                </span>
+            </div>
+        </form>
+        <div class="button-container" >
+            <button class="btn btn-outline-primary" (click)="salirChat()" >SALIR</button> 
+          </div>
+      </div>
+
+</body>
+
+

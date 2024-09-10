@@ -1,0 +1,277 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', 'Poppins-light';
+}
+  body {
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    height: 100vh; 
+    width: 100vw;
+    background: url(../../assets/fondo7.jpg);
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-position: center; 
+}
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+    width: 60vw;
+    flex-direction: column; 
+    padding-top: 5vh;
+    padding-bottom: 5vh;
+    background: blueviolet;
+    
+}
+.letras-container{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    top: 10%;
+    height: 25%;
+    width: 100%;
+}
+
+.letra{
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 45px;
+    width: 45px;
+}
+
+.ocultar{
+    display: none;
+}
+.palabra-container{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    top: 200px;
+    height: 25%;
+    width: 100%;
+    margin-top: 50px;
+}
+.letra-palabra{
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    text-transform: uppercase;
+    height: 50%;
+    height: 50px;
+    width: 50px;
+    background: aqua;
+}
+.new-game-container{
+    display: flex;
+    height: 25%;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+.dibujo-container{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    background: #e0e0e0;
+    height: 25%;
+    width: 60%;
+    align-items: center;
+    border-radius: 8px;
+    position: relative; 
+}
+.new-game-button{
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.gano-container{
+    display: none;
+}
+.ganoJuego{
+    display: block;
+}
+.ocultarJuego{
+    display: none;
+}
+.text-container{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    top: 10%;
+    height: 50%;
+    width: 100%;
+}
+h1{
+    align-self: center;
+}
+.ahorcado {
+    position: absolute;
+    width: 50%;
+    height: 85%;
+    left: 40%;
+}
+
+.poste {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 2%;
+    background-color: black;
+}
+.poste2 {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 4%;
+    width: 30%;
+    background-color: black;
+}
+
+.cuerda {
+    position: absolute;
+    left: 17%;
+    top: 0;
+    height: 25%;
+    width: 2%;
+    background-color: black;
+}
+
+.cabeza {
+    position: absolute;
+    left:  12%;
+    top: 25%;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 5px solid black;
+}
+
+.cuerpo {
+    position: absolute;
+    left: 17%;
+    top: 50%;
+    width: 5px;
+    height: 35%;
+    background-color: black;
+}
+
+.brazo-izquierdo, .brazo-derecho {
+    position: absolute;
+    top: 55%;
+    width: 5px;
+    height: 25%;
+    background-color: black;
+}
+
+.brazo-izquierdo {
+    left: 17%;
+    transform: rotate(45deg);
+    transform-origin: top left;
+}
+
+.brazo-derecho {
+    left: 17%;
+    transform: rotate(-45deg);
+    transform-origin: top right;
+}
+
+.pierna-izquierda, .pierna-derecha {
+    position: absolute;
+    top: 85%;
+    width: 5px;
+    height: 25%;
+    background-color: black;
+}
+
+.pierna-izquierda {
+    left: 17%;
+    transform: rotate(45deg);
+    transform-origin: top left;
+}
+
+.pierna-derecha {
+    left: 17%;
+    transform: rotate(-45deg);
+    transform-origin: top right;
+}
+.button-container{
+    position: fixed;
+    bottom: 7%;
+}
+.btn-outline-primary{
+    --bs-btn-font-weight: 600;
+    background: #000;
+    margin: 5px;
+    width: 150px;
+    text-transform: uppercase;
+    font-size: large;
+}
+.btn-outline-primary:hover{
+    background:  #5d2f82;
+}
+.pistaFinal-container{
+    width: 100%;
+    justify-content: center;
+    
+}
+h6{
+    align-self: center;
+    width: 80%;
+}
+@media (max-width: 665px){
+    .letra{
+        height: 25px;
+        width: 25px;
+    }
+    .container{
+        height: 60vh;
+        width: 95vw;
+    }
+    .cabeza {
+        position: absolute;
+        left:  12%;
+        top: 25%;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        border: 5px solid black;
+    }
+    .letra-palabra{
+        height: 25px;
+        width: 25px;
+    }
+    .pistaFinal-container{
+        padding: 16%;
+    }
+    
+}
+.ocultarCabeza{
+    display: none;
+}
+.ocultarBrazoD{
+    display: none;
+}
+.ocultarBrazoI{
+    display: none;
+}
+.ocultarPieD{
+    display: none;
+}
+.ocultarPieI{
+    display: none;
+}
+
+  

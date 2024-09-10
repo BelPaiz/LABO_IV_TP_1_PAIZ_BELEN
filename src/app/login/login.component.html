@@ -1,25 +1,22 @@
 <body>
         <form action="datos"  class="form-container">
           <div class="input">
-            <input type="email" name="user" [(ngModel)]="user" id="name"  placeholder="ingrese email" >
+            <input type="email" name="user" [(ngModel)]="email" id="name"  placeholder="ingrese email" >
           </div>
           <br><br>
       
           <div class="input">
-            <input type="password" id="pass" placeholder="ingrese contraseña">
+            <input type="password" id="pass" [(ngModel)]="clave" name="clave" placeholder="ingrese contraseña">
           </div>
           <br><br>
             <button (click)="login()" class="btn-outline-primary"> enviar datos </button>
-            <!-- <br><br>
-            <button (click)="getData()" class="btn-outline-primary"> Obtener datos </button> -->
-        </form>
-    
-        <!-- <ng-container *ngIf="login_aceptado; else login_error" routerLink="home" routerLinkActive="active-route">
+            <div class="dataError">
+              <h2 *ngIf="error">{{error}}</h2>
+            </div>
             
-        </ng-container>
-        <ng-template #login_error>
-            <ng-container *ngIf="clickEnviar" routerLink="registro" routerLinkActive="active-route">
-             </ng-container>
-        </ng-template> -->
+            <br><br>
+            <button  (click)="rellenarUsuario()" class="btn-outline-primary relleno"> RELLENAR </button> 
+        </form> 
+         
 </body>
 

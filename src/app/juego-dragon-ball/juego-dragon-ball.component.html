@@ -1,0 +1,49 @@
+<body>
+    <div class="contenedor-principal" [ngClass]="{'ocultarJuego': ocultarJuego}" *ngIf="personajeElegido">
+
+        <div class="container" >
+            <div class="card" style="width: 15rem;">
+              <img class="card-img-top carta-activa" [src]="personajeElegido.image" alt="Card image cap">
+            </div>
+          </div>
+
+          <div class="container-1">
+            <div class="texto1">
+                <p><strong>¿QUIEN ES ESTE PERSONAJE?</strong></p>
+                <!-- <p>{{descripcion}}</p> -->
+            </div>   
+          </div>
+
+          <div class="container-2">
+
+            <div class="puntos2">
+              <p>PUNTOS:</p>
+              <P><strong>{{contadorPuntos}}</strong></P>
+            </div>
+
+            <div class="opciones">
+                <input type="radio" class="opciones" (click)="obtenerElegido(opcion[0])" [value]="opcion[0]" name="option" id="op0" [(ngModel)]="elegido">
+                <label for="op0">{{opcion[0]}}</label><br>
+                <input type="radio" class="opciones" (click)="obtenerElegido(opcion[1])" [value]="opcion[1]" name="option" id="op1" [(ngModel)]="elegido">
+                <label for="op1">{{opcion[1]}}</label><br>
+                <input type="radio" class="opciones" (click)="obtenerElegido(opcion[2])" [value]="opcion[2]" name="option" id="op2" [(ngModel)]="elegido">
+                <label for="op2">{{opcion[2]}}</label><br>
+                <input type="radio" class="opciones" (click)="obtenerElegido(opcion[3])" [value]="opcion[3]" name="option" id="op3" [(ngModel)]="elegido">
+                <label for="op3">{{opcion[3]}}</label>
+            </div>   
+          </div>
+
+    </div>
+      <div class="container gano-container" [ngClass]="{'finalJuego': finalJuego}"> 
+        <div class="text-container">
+            <h1 class="display-1">HICISTE <br> {{contadorPuntos}} <br> PUNTOS</h1>
+        </div>
+        <div class="new-game-container">
+            <button class=" btn btn-primary new-game-button" (click)="EmpezarJuego()">NUEVA PARTIDA</button>
+        </div>
+      </div>
+    <div class="button-container" >
+        <button class="btn btn-outline-primary" (click)="salirJuego()" >SALIR</button> 
+      </div>
+      
+  </body>

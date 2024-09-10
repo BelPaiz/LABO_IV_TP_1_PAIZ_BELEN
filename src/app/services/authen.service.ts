@@ -1,37 +1,38 @@
 import { Injectable } from '@angular/core';
-import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword} from '@angular/fire/auth';
-import { signOut } from 'firebase/auth';
+import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, getAuth, onAuthStateChanged} from '@angular/fire/auth';
+import { BehaviorSubject, Observable } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenService {
 
-  usuarioLogueado:string = "";
-
-  constructor(public auth: Auth) { 
-
+  private authState = new BehaviorSubject<string | null>(null);
+  constructor(public auth: Auth) {
+    onAuthStateChanged(this.auth, (user) => {
+      if (user?.email) {
+        this.authState.next(user.email);
+      } else {
+        this.authState.next(null);
+      }
+    });
   }
 
-  Registro(email:string, password:string, usuarioLogueado:string){
-    createUserWithEmailAndPassword(this.auth, email, password)
-    .then((resp) => {
-      if(resp.user.email !== null) 
-       usuarioLogueado = resp.user.email;
-      
-    }).catch((e) => console.log(e.code));
+  Registro(email:string, password:string){
+    return createUserWithEmailAndPassword(this.auth, email, password);
   }
 
   Login(email:string, pass:string){
-    signInWithEmailAndPassword(this.auth, email, pass).then((res) => {
-      if(res.user.email != null) this.usuarioLogueado = res.user.email;
-    }).catch((e) => console.log(e))
+    return signInWithEmailAndPassword(this.auth, email, pass);
   }
 
   CerrarSesion(){
-    signOut(this.auth).then(()=>{
-      console.log(this.auth.currentUser?.email)
-    })
+    return signOut(this.auth);
+  }
+
+  DatosAutenticacion(){
+  return this.authState.asObservable();
   }
 }
 
