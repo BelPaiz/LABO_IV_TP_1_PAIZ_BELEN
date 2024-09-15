@@ -12,14 +12,21 @@ import { JuegoDragonBallComponent } from './juego-dragon-ball/juego-dragon-ball.
 
 export const routes: Routes = [
     {path: '', redirectTo: '/home', pathMatch:'full'},
-    {path: 'home', component:HomeComponent, ...canActivate(() => redirectUnauthorizedTo(['/login']))},
+    {path: 'home', component:HomeComponent},
     {path: 'login', component:LoginComponent},
     {path: 'quienSoy', component:QuienSoyComponent},
     { path: 'registro', component: RegistroComponent},
-    { path: 'chat', component: ChatComponent},
-    { path: 'ahorcado', component: AhorcadoComponent},
-    { path: 'mayor-menor', component: MenorMayorComponent},
-    { path: 'dragon-trivia', component: JuegoDragonBallComponent},
-    
+    { 
+        path: 'chat', 
+        loadComponent: () => import('./chat/chat.component').then(c=>c.ChatComponent),
+        ...canActivate(() => redirectUnauthorizedTo(['/login']))
+    },
+    { path: 'ahorcado', component: AhorcadoComponent, ...canActivate(() => redirectUnauthorizedTo(['/login']))},
+    { path: 'mayor-menor', component: MenorMayorComponent, ...canActivate(() => redirectUnauthorizedTo(['/login']))},    
+    { 
+        path: 'dragon-trivia', 
+        loadComponent: () => import('./juego-dragon-ball/juego-dragon-ball.component').then(c=>c.JuegoDragonBallComponent),
+        ...canActivate(() => redirectUnauthorizedTo(['/login']))
+    },
     { path: '**',  component: PaginaNoEncontradaComponent},
 ];

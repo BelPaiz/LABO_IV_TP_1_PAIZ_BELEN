@@ -93,7 +93,6 @@ export class ChatComponent {
     return `el ${day}/${month}/${year} a las ${hours}:${minutes}hs.`;
   }
   ngOnDestroy() {
-    // Desuscribirse de todos los observables
     this.subscription.unsubscribe();
   }
 }

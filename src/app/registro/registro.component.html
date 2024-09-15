@@ -1,25 +1,28 @@
 <body>
     <form action="datos" class="form-container">
-      <div class="input">
-        <input type="email" (click)="infoEmail()" name="email" [(ngModel)]="email" placeholder="INGRESA TU EMAIL">
+      <div class="container-input">
+        <div class="input">
+          <input type="email" (click)="infoEmail()" name="email" [(ngModel)]="email" placeholder="INGRESA TU EMAIL">
+        </div>
+        <div class="info">
+          <h2 [ngClass]="{'ocultarm': ocultarm}">{{infom}}</h2>
+        </div>  
+        <div class="input">
+          <input type="password" name="clave" (click)="infoPass()" [(ngModel)]="clave" placeholder="DEFINE TU CONTRASEÑA">
+        </div>
+        <div class="info" >
+          <h2 [ngClass]="{'ocultarp': ocultarp}" [innerHTML]="infop"></h2>
+        </div>
       </div>
-      <div class="info" [ngClass]="{'ocultarm': ocultarm}">
-        <h2>{{infom}}</h2>
-      </div>
-      <br><br>
-
-      <div class="input">
-        <input type="password" name="clave" (click)="infoPass()" [(ngModel)]="clave" placeholder="DEFINE TU CONTRASEÑA">
-      </div>
-      <div class="info" [ngClass]="{'ocultarp': ocultarp}">
-        <h2 [innerHTML]="infop"></h2>
-      </div>
-      <br><br>
-          
+      <div class="container-buttons">
         <button class="btn-outline-primary" (click)="registro()" > Registrarse </button>
         <div class="dataError">
           <h2 *ngIf="error">{{error}}</h2>
         </div>
+      </div>
+      
+          
+        
     </form>
 </body>
 

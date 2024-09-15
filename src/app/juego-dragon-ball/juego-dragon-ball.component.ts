@@ -33,6 +33,7 @@ export class JuegoDragonBallComponent implements OnInit {
   finalJuego:boolean = false;
   contadorPuntos:number = 0;
   private subscription: Subscription = new Subscription();
+  loading: boolean = true;
 
   ngOnInit(): void {
     this.guardarPersonaje();
@@ -45,6 +46,7 @@ export class JuegoDragonBallComponent implements OnInit {
     this.contadorPuntos = 0;
     this.finalJuego = false;
     this.ocultarJuego = false;
+    this.loading = true;
     this.guardarPersonaje();
   }
 
@@ -72,11 +74,15 @@ export class JuegoDragonBallComponent implements OnInit {
       this.personajeElegido = await this.traerPersonaje();
       this.descripcion = this.personajeElegido.description;
       this.excludedIds.push(this.personajeElegido.id);
-    console.log(this.excludedIds);
+      console.log(this.excludedIds);
       console.log(this.personajeElegido);
       this.generarOpciones(this.personajeElegido.name);
+      
     } catch (error) {
       console.error('Error al obtener el personaje:', error);
+    }
+    if(this.personajeElegido){
+      setTimeout(()=>{this.loading = false;},1000);
     }
   }
   async generarOpciones(p:string) {

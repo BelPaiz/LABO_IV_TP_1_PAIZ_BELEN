@@ -3,6 +3,26 @@
     padding: 0;
     font-family: 'Poppins', 'Poppins-light';
 }
+@-webkit-keyframes rotate-center {
+    0% {
+      -webkit-transform: rotate(0);
+              transform: rotate(0);
+    }
+    100% {
+      -webkit-transform: rotate(360deg);
+              transform: rotate(360deg);
+    }
+  }
+  @keyframes rotate-center {
+    0% {
+      -webkit-transform: rotate(0);
+              transform: rotate(0);
+    }
+    100% {
+      -webkit-transform: rotate(360deg);
+              transform: rotate(360deg);
+    }
+  }
   body {
     display: flex;
     justify-content: center;
@@ -14,6 +34,14 @@
     background-size:cover;
     background-repeat: no-repeat;
     background-position: center; 
+}
+.contenedor-principal{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 95vh;
+    width: 60vw;
+    flex-direction: column; 
 }
 .container{
     display: flex;
@@ -39,6 +67,10 @@
     display: block;
     object-fit: contain;
   }
+  .button-container{
+    position: absolute;
+    bottom: 85px;
+    }
   .btn-outline-primary{
     --bs-btn-font-weight: 600;
     background: #000;
@@ -88,15 +120,33 @@ p{
     display: none;
     justify-content: center;
     align-items: center;
+    text-align: center;
 }
 .finalJuego{
-    display: block;
+    display: flex;
 }
 .ocultarJuego{
     display: none;
 }
+
+.loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 20px;
+    height: 30%;
+    width: 30%;
+  }
+  .spinner{
+    height: 100%;
+    -webkit-animation: rotate-center 1s ease-in-out both;
+	        animation: rotate-center 1s ease-in-out both;
+  }
+
 @media (max-width: 665px){
     .container{
+        height: 45%;
         width: 95vw;
         padding-top: 5px;
         padding-bottom: 5px;
@@ -109,7 +159,7 @@ p{
         font-size: small;
     }
     .container-2{
-        height: 10vh;
+        height: 15vh;
         width: 95vw;
         padding-top: 5px;
     }
@@ -121,5 +171,13 @@ p{
     .puntos2{
         left: 5%;
         top: 70%;
+    }
+    .button-container{
+    position: absolute;
+    bottom: 75px;
+    }
+    .contenedor-principal{
+        height: 90%;
+        width: 100%;
     }
 }

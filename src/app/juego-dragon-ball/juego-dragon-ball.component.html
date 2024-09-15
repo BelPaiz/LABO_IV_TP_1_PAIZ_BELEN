@@ -1,6 +1,9 @@
-<body>
-    <div class="contenedor-principal" [ngClass]="{'ocultarJuego': ocultarJuego}" *ngIf="personajeElegido">
-
+<body>  
+  <div *ngIf="loading" class="loading-container">
+    <img class="spinner" src="../../assets/spinner.png" alt="Cargando...">
+  </div>
+    <div class="contenedor-principal" [ngClass]="{'ocultarJuego': ocultarJuego}" *ngIf="!loading">
+        
         <div class="container" >
             <div class="card" style="width: 15rem;">
               <img class="card-img-top carta-activa" [src]="personajeElegido.image" alt="Card image cap">
@@ -10,7 +13,6 @@
           <div class="container-1">
             <div class="texto1">
                 <p><strong>¿QUIEN ES ESTE PERSONAJE?</strong></p>
-                <!-- <p>{{descripcion}}</p> -->
             </div>   
           </div>
 

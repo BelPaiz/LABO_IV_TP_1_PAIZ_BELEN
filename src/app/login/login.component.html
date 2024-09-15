@@ -1,21 +1,26 @@
 <body>
         <form action="datos"  class="form-container">
-          <div class="input">
-            <input type="email" name="user" [(ngModel)]="email" id="name"  placeholder="ingrese email" >
+          <div class="container-input">
+            <div class="input">
+              <input (click)="limpiar()" type="email" name="user" [(ngModel)]="email" id="name"  placeholder="ingrese email" >
+            </div>
+            
+        
+            <div class="input">
+              <input (click)="limpiar()" type="password" id="pass" [(ngModel)]="clave" name="clave" placeholder="ingrese contraseña">
+            </div>
+            
           </div>
-          <br><br>
-      
-          <div class="input">
-            <input type="password" id="pass" [(ngModel)]="clave" name="clave" placeholder="ingrese contraseña">
-          </div>
-          <br><br>
+          <div class="container-buttons">
             <button (click)="login()" class="btn-outline-primary"> enviar datos </button>
+
             <div class="dataError">
               <h2 *ngIf="error">{{error}}</h2>
             </div>
-            
-            <br><br>
-            <button  (click)="rellenarUsuario()" class="btn-outline-primary relleno"> RELLENAR </button> 
+            <span class="container-relleno" (click)="rellenarUsuario()">
+              <img class="btnRellenar" src="../../assets/rellenar.png" width="20px" alt="send message">
+            </span>
+          </div>                    
         </form> 
          
 </body>
