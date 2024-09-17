@@ -1,40 +1,32 @@
 <body>  
-  <div *ngIf="loading" class="loading-container">
-    <img class="spinner" src="../../assets/spinner.png" alt="Cargando...">
-  </div>
-    <div class="contenedor-principal" [ngClass]="{'ocultarJuego': ocultarJuego}" *ngIf="!loading">
-        
+    <div class="contenedor-principal" [ngClass]="{'ocultarJuego': ocultarJuego}" *ngIf="this.personajeElegido">
         <div class="container" >
             <div class="card" style="width: 15rem;">
               <img class="card-img-top carta-activa" [src]="personajeElegido.image" alt="Card image cap">
             </div>
           </div>
-
           <div class="container-1">
             <div class="texto1">
                 <p><strong>¿QUIEN ES ESTE PERSONAJE?</strong></p>
             </div>   
           </div>
-
           <div class="container-2">
-
-            <div class="puntos2">
+            <div class="puntos2" *ngIf="!this.loader.getLoader()">
               <p>PUNTOS:</p>
-              <P><strong>{{contadorPuntos}}</strong></P>
+              <P>{{contadorPuntos}}</P>
             </div>
-
-            <div class="opciones">
-                <input type="radio" class="opciones" (click)="obtenerElegido(opcion[0])" [value]="opcion[0]" name="option" id="op0" [(ngModel)]="elegido">
-                <label for="op0">{{opcion[0]}}</label><br>
-                <input type="radio" class="opciones" (click)="obtenerElegido(opcion[1])" [value]="opcion[1]" name="option" id="op1" [(ngModel)]="elegido">
-                <label for="op1">{{opcion[1]}}</label><br>
-                <input type="radio" class="opciones" (click)="obtenerElegido(opcion[2])" [value]="opcion[2]" name="option" id="op2" [(ngModel)]="elegido">
-                <label for="op2">{{opcion[2]}}</label><br>
-                <input type="radio" class="opciones" (click)="obtenerElegido(opcion[3])" [value]="opcion[3]" name="option" id="op3" [(ngModel)]="elegido">
-                <label for="op3">{{opcion[3]}}</label>
-            </div>   
+            <div class="elegir">
+              <div class="opciones">
+                <button type="button" class="btn btn-outline-primary opc" (click)="obtenerElegido(opcion[0])">{{opcion[0]}}</button>
+                <button type="button" class="btn btn-outline-primary opc" (click)="obtenerElegido(opcion[1])">{{opcion[1]}}</button>
+              </div>  
+              <div class="opciones">
+                <button type="button" class="btn btn-outline-primary opc" (click)="obtenerElegido(opcion[2])">{{opcion[2]}}</button>
+                <button type="button" class="btn btn-outline-primary opc" (click)="obtenerElegido(opcion[3])">{{opcion[3]}}</button>
+              </div>  
+            </div>
+            
           </div>
-
     </div>
       <div class="container gano-container" [ngClass]="{'finalJuego': finalJuego}"> 
         <div class="text-container">

@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, numberAttribute, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LoaderService } from '../services/loader.service';
 
 @Component({
   selector: 'app-menor-mayor',
@@ -12,7 +13,8 @@ import { Router } from '@angular/router';
 })
 export class MenorMayorComponent implements OnInit{
 
-  constructor(private router: Router
+  constructor(private router: Router,
+    public loader: LoaderService
   ){}
 
   ngOnInit(): void {
@@ -235,6 +237,7 @@ export class MenorMayorComponent implements OnInit{
   finalJuego:boolean = false;
 
   EmpezarJuego(){
+    this.loader.setLoader(true);
     this.cartas_usadas = [...this.mazo];
     this.carta_elegida = {tipo: "", numero: 0, src:""};
     this.contadorPuntos = 0;
@@ -252,7 +255,8 @@ export class MenorMayorComponent implements OnInit{
   generarCarta(){
     const index = Math.floor(Math.random() * this.cartas_usadas.length);
     this.carta_elegida = this.cartas_usadas[index];
-    this.eliminoLetraUtilizada(this.carta_elegida);    
+    this.eliminoLetraUtilizada(this.carta_elegida);  
+    this.loader.setLoader(false);  
     return this.carta_elegida;
   }
 

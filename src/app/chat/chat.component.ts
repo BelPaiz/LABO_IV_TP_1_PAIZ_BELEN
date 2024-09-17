@@ -6,6 +6,7 @@ import { AuthenService } from '../services/authen.service';
 import { Router } from '@angular/router';
 import { Timestamp } from 'firebase/firestore';
 import { Subscription } from 'rxjs';
+import { LoaderService } from '../services/loader.service';
 
 @Component({
   selector: 'app-chat',
@@ -25,10 +26,12 @@ export class ChatComponent {
   
   constructor(private firestore: FirestoreService,
     private auth:AuthenService,
-    private router: Router
+    private router: Router,
+    public loader: LoaderService
   ){}
 
   ngOnInit(){
+    this.loader.setLoader(true);
     this.auth.DatosAutenticacion().subscribe({
       next: (email) => {
         if(email){
@@ -45,6 +48,7 @@ export class ChatComponent {
     if(this.mensajes.length === 0){
       this.generarChat();
     } 
+    this.loader.setLoader(false);
   }
   generarChat() {
     const subsChat = this.firestore.getDataChat().subscribe((respuesta) => {

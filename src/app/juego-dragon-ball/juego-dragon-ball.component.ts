@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { FormsModule } from '@angular/forms';
+import { LoaderService } from '../services/loader.service';
 
 
 @Component({
@@ -19,7 +20,8 @@ export class JuegoDragonBallComponent implements OnInit {
   constructor(
     private api: DragonAPIService,
     private router: Router,
-    private cd: ChangeDetectorRef
+    private cd: ChangeDetectorRef,
+    public loader: LoaderService
   ){}
 
   max_id:number = 44;
@@ -33,10 +35,9 @@ export class JuegoDragonBallComponent implements OnInit {
   finalJuego:boolean = false;
   contadorPuntos:number = 0;
   private subscription: Subscription = new Subscription();
-  loading: boolean = true;
 
   ngOnInit(): void {
-    this.guardarPersonaje();
+    this.EmpezarJuego();
   }
 
   EmpezarJuego(){
@@ -46,7 +47,7 @@ export class JuegoDragonBallComponent implements OnInit {
     this.contadorPuntos = 0;
     this.finalJuego = false;
     this.ocultarJuego = false;
-    this.loading = true;
+    this.loader.setLoader(true);
     this.guardarPersonaje();
   }
 
@@ -81,9 +82,7 @@ export class JuegoDragonBallComponent implements OnInit {
     } catch (error) {
       console.error('Error al obtener el personaje:', error);
     }
-    if(this.personajeElegido){
-      setTimeout(()=>{this.loading = false;},1000);
-    }
+    this.loader.setLoader(false);
   }
   async generarOpciones(p:string) {
     try {

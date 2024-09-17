@@ -15,7 +15,7 @@
         <p>PUNTOS:</p>
         <P><strong>{{contadorPuntos}}</strong></P>
       </div>
-      <div class="puntos2">
+      <div class="puntos2" *ngIf="!this.loader.getLoader()">
         <p>MAZO:</p>
         <P><strong>{{cartas_usadas.length}}</strong></P>
         <p>cartas</p>

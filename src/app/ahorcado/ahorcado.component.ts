@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LoaderService } from '../services/loader.service';
 
 @Component({
   selector: 'app-ahorcado',
@@ -109,11 +110,14 @@ export class AhorcadoComponent implements OnInit{
   ocultarPieD:boolean = true;
   ocultarPieI:boolean = true;
 
-  constructor(private router: Router
+  constructor(private router: Router,
+    public loader: LoaderService
   ){}
 
   ngOnInit(): void {
+    this.loader.setLoader(true);
     this.letras_en_uso = [...this.letras];
+    this.generarPalabra();
   }
   
   eliminoLetraUtilizada(letra:string){
@@ -142,6 +146,7 @@ export class AhorcadoComponent implements OnInit{
     const index = Math.floor(Math.random() * this.palabras.length);
     this.palabraElegida = this.palabras[index];
     this.generarLetrasIncognita();
+    this.loader.setLoader(false);
     return this.palabraElegida;
   }
   generarLetrasIncognita(){

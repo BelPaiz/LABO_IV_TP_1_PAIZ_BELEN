@@ -3,12 +3,13 @@ import { NavigationEnd, Router, RouterLink, RouterLinkActive, RouterOutlet } fro
 import { DataService } from './services/data.service';
 import { AuthenService } from './services/authen.service';
 import { CommonModule } from '@angular/common';
+import { LoaderComponent } from "./loader/loader.component";
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, RouterLinkActive, CommonModule],
+  imports: [RouterOutlet, RouterLink, RouterLinkActive, CommonModule, LoaderComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
