@@ -13,6 +13,7 @@
     background-size:cover;
     background-repeat: no-repeat;
     background-position: center; 
+    
 }
 .container{
     display: flex;
@@ -23,8 +24,24 @@
     flex-direction: column; 
     padding-top: 5vh;
     padding-bottom: 5vh;
-    background: blueviolet;
+    background: rgb(153, 51, 204);;
+    position: relative;
     
+}
+.vidas-container{
+    display: flex;
+    flex-direction: row; 
+    width: 3%;
+    height: 7%;
+    background: rgb(153, 51, 204);;
+    position: absolute;
+    top: 0;
+    right: 20%; 
+    padding: 5px;
+}
+.vida{
+    width: auto;
+    max-height: 100%;
 }
 .letras-container{
     display: flex;
@@ -222,14 +239,21 @@ h1{
 .btn-outline-primary:hover{
     background:  #5d2f82;
 }
+.display-1{
+height: 50%;
+}
+.new-game-container{
+    height: 20%;
+}
 .pistaFinal-container{
     width: 100%;
-    justify-content: center;
-    
+    text-align: center;
+    height: 30%;
+    align-content: center;
 }
 h6{
-    align-self: center;
-    width: 80%;
+    padding: 5px;
+    height: 100%;
 }
 @media (max-width: 665px){
     .letra{
@@ -255,6 +279,11 @@ h6{
     }
     .pistaFinal-container{
         padding: 16%;
+    }
+    .vidas-container{
+        top: 0;
+        right: 36%; 
+        padding: 5px;
     }
     
 }

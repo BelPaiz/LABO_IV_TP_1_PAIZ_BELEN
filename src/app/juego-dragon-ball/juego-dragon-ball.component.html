@@ -1,6 +1,10 @@
 <body>  
     <div class="contenedor-principal" [ngClass]="{'ocultarJuego': ocultarJuego}" *ngIf="this.personajeElegido">
+      
         <div class="container" >
+          <div class="vidas-container">
+            <img class="vida" *ngFor="let vida of vidas" [src]="vida" alt="vida">
+          </div>
             <div class="card" style="width: 15rem;">
               <img class="card-img-top carta-activa" [src]="personajeElegido.image" alt="Card image cap">
             </div>
@@ -28,6 +32,18 @@
             
           </div>
     </div>
+
+    <div class="container gano-container" [ngClass]="{'correcto': correcto}"> 
+      <img class="" src="../../assets/correcto.png" alt="correcto">
+    </div>  
+    <div class="container gano-container info" [ngClass]="{'incorrecto': incorrecto}"> 
+      <img class="perdi_vida" src="../../assets/vida_rota.png" alt="incorrecto">
+      <p class="info_desc">{{descripcion}}</p>
+      <div class="new-game-container">
+        <button class=" btn btn-primary new-game-button" (click)="continuar()">CONTINUAR</button>
+    </div>
+    </div>  
+
       <div class="container gano-container" [ngClass]="{'finalJuego': finalJuego}"> 
         <div class="text-container">
             <h1 class="display-1">HICISTE <br> {{contadorPuntos}} <br> PUNTOS</h1>

@@ -1,16 +1,25 @@
 <body>
   <div class="container">
     <div class="card"  (click)="irChat()">
-      <img class="btnEnviar" src="../../assets/chat.jpg"  alt="send message">
+      <img class="btnEnviar" [src]="img_chat"  alt="ir a chat">
     </div>
     <div class="card"  (click)="irAhorcado()">
-      <img class="btnEnviar" src="../../assets/ahorcado.jpg"  alt="send message">
+      <img class="btnEnviar" [src]="img_ahorcado"  alt="ir a ahorcado">
     </div>
     <div class="card"  (click)="irmayor_menor()">
-      <img class="btnEnviar" src="../../assets/meyor-menor.jpg"  alt="send message">
+      <img class="btnEnviar" [src]="img_menor_mayor"  alt="ir a mayor-menor">
     </div>
     <div class="card"  (click)="irDragon_triviar()">
-      <img class="btnEnviar" src="../../assets/trivia1.jpg"  alt="send message">
+      <img class="btnEnviar" [src]="img_trivia"  alt="ir a trivia">
+    </div>
+    <div class="card" (click)="irInvaders()"  style="background: black;">
+      <img class="btnEnviar" [src]="img_invaders"  alt="ir a juego propio">
+    </div>
+    <div class="card"  (click)="irPuntajes()">
+      <img class="btnEnviar" [src]="img_puntajes"  alt="ir a irPuntajes">
+    </div>
+    <div class="card" (click)="irEncuesta()" >
+      <img class="btnEnviar" [src]="img_encuesta"  alt="ir a encuesta">
     </div>
   </div>
 </body>

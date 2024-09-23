@@ -1,0 +1,58 @@
+<body>
+    <div class="container">
+        <div class="card" style="width: 18rem;">
+            <div class="card-header">
+                <h5>AHORCADO</h5>
+            </div>  
+            <ul class="list-group list-group-flush">
+                <ng-container *ngFor="let puntos of puntajes  | orderPuntos: 'desc'">
+                    <li class="list-group-item" *ngIf=" sumarContador(puntos.juego, 'ahorcado', contadorAhorcado)" >
+                        {{puntos.usuario}} :  {{puntos.puntos}} puntos
+                    </li>
+                </ng-container>
+            </ul>
+          </div>
+
+          <div class="card" style="width: 18rem;">
+            <div class="card-header">
+                <h5>MAYOR - MENOR</h5>
+            </div>  
+            <ul class="list-group list-group-flush">
+                <ng-container *ngFor="let puntos of puntajes">
+                    <li class="list-group-item" *ngIf="sumarContador(puntos.juego, 'menor-mayor', contadorMayMen)">
+                        {{puntos.usuario}} :  {{puntos.puntos}} puntos
+                    </li>
+                </ng-container>
+            </ul>
+          </div>
+
+          <div class="card" style="width: 18rem;">
+            <div class="card-header">
+                <h5>TRIVIA</h5>
+            </div>  
+            <ul class="list-group list-group-flush">
+                <ng-container *ngFor="let puntos of puntajes">
+                    <li class="list-group-item" *ngIf=" sumarContador(puntos.juego, 'trivia', contadorTrivia)">
+                        {{puntos.usuario}} :  {{puntos.puntos}} puntos
+                    </li>
+                </ng-container>
+            </ul>
+          </div>
+
+          <!-- <div class="card" style="width: 18rem;">
+            <div class="card-header">
+                <h5>JUEGO PROPIO</h5>
+            </div>  
+            <ul class="list-group list-group-flush">
+                <ng-container *ngFor="let puntos of puntajes">
+                    <li class="list-group-item" *ngIf="puntos.juego === 'trivia'">
+                        {{puntos.usuario}} :  {{puntos.puntos}} puntos
+                    </li>
+                </ng-container>
+            </ul>
+          </div> -->
+          <div class="button-container" >
+            <button class="btn btn-outline-primary" (click)="salir()" >SALIR</button> 
+          </div>
+    </div>
+</body>

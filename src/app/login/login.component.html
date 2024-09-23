@@ -17,8 +17,9 @@
             <div class="dataError">
               <h2 *ngIf="error">{{error}}</h2>
             </div>
-            <span class="container-relleno" (click)="rellenarUsuario()">
-              <img class="btnRellenar" src="../../assets/rellenar.png" width="20px" alt="send message">
+            <span class="container-relleno">
+              <img class="btnRellenar" src="../../assets/rellenar.png" width="20px" alt="send message" (click)="rellenarUsuario(0)">
+              <img class="btnRellenar" src="../../assets/rellenar.png" width="20px" alt="send message" (click)="rellenarUsuario(1)">
             </span>
           </div>                    
         </form> 

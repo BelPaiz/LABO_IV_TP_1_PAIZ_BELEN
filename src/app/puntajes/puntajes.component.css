@@ -1,0 +1,76 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', 'Poppins-light';
+}
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
+    height: 100vh; 
+    padding: 5%;
+    background: url(../../assets/fondo7.jpg);
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-position: center; 
+}
+.container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items:center;
+    height: 90vh; 
+    padding: 5%;
+    width: 90vw;
+}
+.card{
+    height: 90%;
+    width: 25%;
+    padding: 5px;
+    margin: 10px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background: rgb(153, 51, 204);
+}
+.card-header{
+    align-self: center;
+    color: aliceblue;
+    
+}
+ul, li{
+    background: #986dbd;
+    width: 100%;
+}
+.button-container{
+    position: fixed;
+    bottom: 7%;
+}
+.btn-outline-primary{
+    --bs-btn-font-weight: 600;
+    background: #000;
+    margin: 5px;
+    width: 150px;
+    text-transform: uppercase;
+    font-size: large;
+}
+.btn-outline-primary:hover{
+    background:  #5d2f82;
+}
+@media (max-width: 665px){
+    * {
+        font-size: x-small;
+    }
+    .container{
+        flex-direction: column;
+        height: 90%; 
+        padding: 5%;
+        width: 95vw;
+    }
+    .card{
+        height: auto;
+        max-width: 95%;
+    }
+}

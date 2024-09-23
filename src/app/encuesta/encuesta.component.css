@@ -1,0 +1,135 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', 'Poppins-light';
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    height: 100vh; 
+    width: 100vw;
+    background: url(../../assets/fondo7.jpg);
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-position: center; 
+}
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90%;
+    width: 90%;
+    flex-direction: column; 
+    padding-top: 5vh;
+    padding-bottom: 5vh;
+}
+.form-container{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 95%;
+    width: 60%;
+    flex-direction: column; 
+    margin-top: 15px;
+    padding-top: 6vh;
+    padding-bottom: 4vh;
+    background: rgba(0,0,0,0.8);
+}
+.form-control, .input-group-text{
+    padding: 5px;
+    margin: 2px;
+    border: 0.5px solid black;
+}
+.pregunta{
+    display: flex;
+    width: 100%;
+    border: none;
+    justify-content: center;
+    flex-direction: column;
+}
+.input-group{
+    margin: 3px;
+    width: 95%;
+}
+.descripcion{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    border: 2px solid black;
+    padding: 3px;
+    border-radius: 10px;
+}
+.form-range{
+    flex-grow: 1;
+    margin-right: 10px;
+    border: 2px solid black;
+    padding: 15px;
+    width: 60%;
+}
+.range-group{
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+.seleccion{
+    width: 100%;
+}
+.opcion{
+    width: 100%;
+    margin: 5px;
+    height: auto;
+}
+.container-buttons{
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    flex-direction: column;
+    position: relative;
+    width: 95%;
+    height: 15%;
+}
+.btn-outline-primary{
+    background: #000;
+    padding: 10px;
+    color: white;
+    text-transform: uppercase;
+    font-size: large;
+    height: 45px;
+    width: 150px;
+    margin: 5px;
+}
+.dataError{
+    width: 70%;
+    height: 10%;
+    align-self: flex-start;
+    position: absolute;
+}
+h2{
+    font-size: medium;
+    color: white;
+}
+.btn-outline-primary:hover{
+    background:  #5d2f82;
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+@media (max-width: 665px){
+    *{
+        font-size: x-small;
+    }
+    .container{
+        height: 90%;
+        width: 95%;
+    }
+    .form-container{
+        height: 90%;
+        width: 100%;
+    }
+    
+}

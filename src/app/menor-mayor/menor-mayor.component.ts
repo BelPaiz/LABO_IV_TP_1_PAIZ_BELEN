@@ -3,6 +3,8 @@ import { Component, numberAttribute, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoaderService } from '../services/loader.service';
+import { FirestoreService } from '../services/firestore.service';
+import { AuthenService } from '../services/authen.service';
 
 @Component({
   selector: 'app-menor-mayor',
@@ -14,11 +16,23 @@ import { LoaderService } from '../services/loader.service';
 export class MenorMayorComponent implements OnInit{
 
   constructor(private router: Router,
-    public loader: LoaderService
+    public loader: LoaderService,
+    public firestore: FirestoreService,
+    private auth:AuthenService
   ){}
 
   ngOnInit(): void {
     this.EmpezarJuego();
+    this.auth.DatosAutenticacion().subscribe({
+      next: (email) => {
+        if(email){
+          this.usuario = email;
+        }
+      },
+      error: (error) => {
+        console.error(error);
+      }
+    });
   }
 
   reverso:string = "../../assets/mazo/r_mazo.jpg";
@@ -235,6 +249,12 @@ export class MenorMayorComponent implements OnInit{
   carta_num_prox:number = 0;
   ocultarJuego:boolean = false;
   finalJuego:boolean = false;
+  correcto:boolean = false;
+  incorrecto:boolean = false;
+  vidas:string[] = ["../../assets/vidas.png", "../../assets/vidas.png", 
+    "../../assets/vidas.png", "../../assets/vidas.png", "../../assets/vidas.png"];
+  animacion: boolean = false;
+  usuario: string = "";
 
   EmpezarJuego(){
     this.loader.setLoader(true);
@@ -250,13 +270,15 @@ export class MenorMayorComponent implements OnInit{
     this.finalJuego = false;
     this.ocultarJuego = false;
     this.carta_num_actual = this.carta_elegida.numero;
+    this.vidas = ["../../assets/vidas.png", "../../assets/vidas.png", "../../assets/vidas.png", "../../assets/vidas.png", "../../assets/vidas.png"];
   }
 
   generarCarta(){
     const index = Math.floor(Math.random() * this.cartas_usadas.length);
     this.carta_elegida = this.cartas_usadas[index];
     this.eliminoLetraUtilizada(this.carta_elegida);  
-    this.loader.setLoader(false);  
+    this.loader.setLoader(false); 
+    
     return this.carta_elegida;
   }
 
@@ -275,7 +297,6 @@ export class MenorMayorComponent implements OnInit{
       this.carta_num_prox = this.carta_elegida.numero;
     }
     this.verificaAcierto();
-    
   }
   seleccionoMenor(){
     this.elegiMenor = true;
@@ -286,22 +307,60 @@ export class MenorMayorComponent implements OnInit{
     }
     this.verificaAcierto();
   }
+
   verificaAcierto(){
-    if(this.cartas_usadas.length === 0){
+    if(this.cartas_usadas.length < 40){
       this.noEsPrimer = true;
     }
 
-    if(this.carta_num_prox > this.carta_num_actual){
-      if(this.elegiMayor === true){
+    if(this.elegiMayor === true){
+      if(this.carta_num_prox > this.carta_num_actual){
         this.contadorPuntos ++;
-        this.elegiMayor = false;
+        this.correcto = true;
+        this.ocultarJuego = true;
+        setTimeout(()=>{
+          this.correcto = false;
+          this.ocultarJuego = false;
+          
+        }, 500);
       }
+      else{
+        this.incorrecto = true;
+        this.ocultarJuego = true;
+        setTimeout(()=>{
+          this.incorrecto = false;
+          this.ocultarJuego = false;
+          this.vidas.pop();
+          this.finDelJuego();
+        }, 500);
+        
+      }
+      this.elegiMayor = false;
     }
-    if(this.carta_num_prox < this.carta_num_actual){
-      if(this.elegiMenor === true){
+
+    if(this.elegiMenor === true){
+      if(this.carta_num_prox < this.carta_num_actual){
         this.contadorPuntos ++;
-        this.elegiMenor = false;
+        this.correcto = true;
+        this.ocultarJuego = true;
+        setTimeout(()=>{
+          this.correcto = false;
+          this.ocultarJuego = false;
+         
+        }, 500);
       }
+      else{
+        this.incorrecto = true;
+        this.ocultarJuego = true;
+        setTimeout(()=>{
+          this.incorrecto = false;
+          this.ocultarJuego = false;
+          this.vidas.pop();
+          this.finDelJuego();
+        }, 500);
+        
+      }
+      this.elegiMenor = false;
     }
     this.carta_num_actual = this.carta_num_prox;
   }
@@ -310,9 +369,22 @@ export class MenorMayorComponent implements OnInit{
     if(this.cartas_usadas.length === 0 && this.noEsPrimer === true){
       this.ocultarJuego = true;
       this.finalJuego = true;
+      this.guardarPuntos();
+    }
+    else{
+      if(this.vidas.length === 0){
+        this.ocultarJuego = true;
+      this.finalJuego = true;
+      this.guardarPuntos();
+      }
     }
   }
 
+  guardarPuntos(){
+    if(this.contadorPuntos !== 0){
+      this.firestore.setPuntajes(this.usuario, "menor-mayor", this.contadorPuntos);
+    }
+  }
 
   salirJuego(){
     this.router.navigate(['/home']);

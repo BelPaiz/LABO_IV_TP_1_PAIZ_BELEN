@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoaderService } from '../services/loader.service';
+import { FirestoreService } from '../services/firestore.service';
+import { AuthenService } from '../services/authen.service';
 
 @Component({
   selector: 'app-ahorcado',
@@ -103,21 +105,36 @@ export class AhorcadoComponent implements OnInit{
   ganoJuego:boolean = false;
   pierdeJuego:boolean = false;
   ocultarJuego:boolean = false;
+  vidas:string[] = ["../../assets/vidas.png", "../../assets/vidas.png", "../../assets/vidas.png", "../../assets/vidas.png", "../../assets/vidas.png"];
 
   ocultarCabeza:boolean = true;
   ocultarBrazoD:boolean = true;
   ocultarBrazoI:boolean = true;
   ocultarPieD:boolean = true;
   ocultarPieI:boolean = true;
+  usuario: string = "";
+  contadorPuntos:number = 0;
 
   constructor(private router: Router,
-    public loader: LoaderService
+    public loader: LoaderService,
+    public firestore: FirestoreService,
+    private auth:AuthenService
   ){}
 
   ngOnInit(): void {
+    this.auth.DatosAutenticacion().subscribe({
+      next: (email) => {
+        if(email){
+          this.usuario = email;
+        }
+      },
+      error: (error) => {
+        console.error(error);
+      }
+    });
     this.loader.setLoader(true);
     this.letras_en_uso = [...this.letras];
-    this.generarPalabra();
+    this.nuevaPartida();
   }
   
   eliminoLetraUtilizada(letra:string){
@@ -136,6 +153,8 @@ export class AhorcadoComponent implements OnInit{
     this.ganoJuego = false;
     this.pierdeJuego = false;
     this.ocultarJuego = false;
+
+    this.vidas = ["../../assets/vidas.png", "../../assets/vidas.png", "../../assets/vidas.png", "../../assets/vidas.png", "../../assets/vidas.png"];
 
     this.ocultarCabeza = true;
     this.ocultarBrazoD = true;
@@ -189,6 +208,7 @@ export class AhorcadoComponent implements OnInit{
                   this.ocultarPieI = false;
                   break;  
       }
+      this.vidas.pop();
       setTimeout(() => {
       if(this.contadorErradas === 5){
         this.pierdeJuego = true;
@@ -198,6 +218,8 @@ export class AhorcadoComponent implements OnInit{
     else{
       if(contadorFinal === 0){
         this.ganoJuego = true;
+        this.contadorPuntos ++;
+        console.log(this.contadorPuntos);
         this.ocultarJuego = this.ganoJuego;
       }
     }
@@ -212,10 +234,18 @@ export class AhorcadoComponent implements OnInit{
     return contador;
   }
   salirJuego(){
+    this.guardarPuntos();
     this.router.navigate(['/home']);
   }
 
-
-
-
+  nuevaPartida(){
+    this.guardarPuntos();
+    this.generarPalabra();
+    this.contadorPuntos = 0;
+  }
+  guardarPuntos(){
+    if(this.contadorPuntos !== 0){
+      this.firestore.setPuntajes(this.usuario, "ahorcado", this.contadorPuntos);
+    }
+  }
 }

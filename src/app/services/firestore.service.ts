@@ -37,6 +37,23 @@ export class FirestoreService {
     let col = collection (this.firestore, 'chat');
     addDoc(col, { text: texto, time: new Date(), user: usuario })
   }
+
+  getPuntajes(): Observable<any[]>{
+    const col = collection(this.firestore, 'puntajes');
+    const q = query(col, orderBy('puntos'));
+    return collectionData(q);
+  }
+  setPuntajes(usuario: string, juego: string, puntos: number){
+    let col = collection (this.firestore, 'puntajes');
+    addDoc(col, {usuario: usuario,  time: new Date(), puntos: puntos, juego: juego })
+  }
+
+  setEncuesta(encuesta:any){
+    let col = collection (this.firestore, 'encuesta');
+    addDoc(col, {usuario: encuesta.usuario, nombre: encuesta.nombre, apellido: encuesta.apellido, edad: encuesta.edad, 
+      telefono: encuesta.telefono, satisfaccion: encuesta.satisfaccion, recomendar: encuesta.recomedar, comentario: encuesta.comentario
+    })
+  }
 }
     
   

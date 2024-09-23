@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { FormsModule } from '@angular/forms';
 import { LoaderService } from '../services/loader.service';
+import { FirestoreService } from '../services/firestore.service';
+import { AuthenService } from '../services/authen.service';
 
 
 @Component({
@@ -21,32 +23,54 @@ export class JuegoDragonBallComponent implements OnInit {
     private api: DragonAPIService,
     private router: Router,
     private cd: ChangeDetectorRef,
-    public loader: LoaderService
+    public loader: LoaderService,
+    public firestore: FirestoreService,
+    private auth:AuthenService
   ){}
 
   max_id:number = 44;
   id_generado:number = 0;
   personajeElegido:any;
   excludedIds: number[] = [41, 36];
+  noExisten: number[] = [41, 36];
   descripcion:string = "";
   opcion:string[] = [];
   elegido:string = "";
   ocultarJuego:boolean = false;
   finalJuego:boolean = false;
   contadorPuntos:number = 0;
+  usuario: string = "";
   private subscription: Subscription = new Subscription();
+  correcto:boolean = false;
+  incorrecto:boolean = false;
+  vidas:string[] = [];
+  audioCorrecto = new Audio('../../assets/Db_track1.mp3');
+  audioIncorrecto = new Audio('../../assets/DB_sound2.mp3');
 
   ngOnInit(): void {
     this.EmpezarJuego();
+    this.auth.DatosAutenticacion().subscribe({
+      next: (email) => {
+        if(email){
+          this.usuario = email;
+        }
+      },
+      error: (error) => {
+        console.error(error);
+      }
+    });
   }
 
   EmpezarJuego(){
     this.id_generado = 0;
+    this.noExisten = [41, 36];
     this.excludedIds = [41, 36];
     this.elegido = "";
     this.contadorPuntos = 0;
     this.finalJuego = false;
     this.ocultarJuego = false;
+    this.vidas = ["../../assets/vidas.png", "../../assets/vidas.png", 
+      "../../assets/vidas.png", "../../assets/vidas.png", "../../assets/vidas.png"];
     this.loader.setLoader(true);
     this.guardarPersonaje();
   }
@@ -75,8 +99,6 @@ export class JuegoDragonBallComponent implements OnInit {
       this.personajeElegido = await this.traerPersonaje();
       this.descripcion = this.personajeElegido.description;
       this.excludedIds.push(this.personajeElegido.id);
-      console.log(this.excludedIds);
-      console.log(this.personajeElegido);
       this.generarOpciones(this.personajeElegido.name);
       
     } catch (error) {
@@ -88,9 +110,11 @@ export class JuegoDragonBallComponent implements OnInit {
     try {
       this.opcion = [];
       this.opcion.push(p);
-      for (let i = 1; i < 4; i++) {
+      while (this.opcion.length < 4) {
         let personaje: any = await this.traerPersonaje();
-        this.opcion.push(personaje.name);
+        if (!this.opcion.includes(personaje.name)) {
+          this.opcion.push(personaje.name);
+        }
       }
       this.mezclarArray(this.opcion);
     } catch (error) {
@@ -107,24 +131,57 @@ export class JuegoDragonBallComponent implements OnInit {
   obtenerElegido(eleccion: string){
     this.elegido = eleccion;
     this.verificaAcierto();
-    this.finDelJuego();
   }
 
   verificaAcierto(){
     if(this.personajeElegido.name === this.elegido){
       this.contadorPuntos ++;
-      console.log(this.contadorPuntos);
+      this.audioCorrecto.play();
+      this.correcto = true;
+        this.ocultarJuego = true;
+        setTimeout(()=>{
+          this.correcto = false;
+          this.ocultarJuego = false;
+          this.finDelJuego();
+        }, 1500);
+        this.elegido = "";
+        this.guardarPersonaje();
     }
-    this.cd.detectChanges();
-      this.elegido = "";
-      this.guardarPersonaje();
+    else{
+      this.audioIncorrecto.play();
+      this.incorrecto = true;
+        this.ocultarJuego = true;
+    }
+    
   }
 
   finDelJuego(){
-    console.log(this.excludedIds.length);
-    if(this.excludedIds.length === 42){
+    if(this.excludedIds.length === 40){
       this.ocultarJuego = true;
       this.finalJuego = true;
+      this.guardarPuntos();
+    }
+    else{
+      if(this.vidas.length === 0){
+        this.ocultarJuego = true;
+        this.finalJuego = true;
+      this.guardarPuntos();
+      }
+    }
+  }
+  continuar(){
+      this.incorrecto = false;
+      this.ocultarJuego = false;
+      this.audioIncorrecto.pause();
+      this.audioIncorrecto.currentTime = 0;
+      this.vidas.pop();
+      this.finDelJuego();
+      this.elegido = "";
+      this.guardarPersonaje();
+  }
+  guardarPuntos(){
+    if(this.contadorPuntos !== 0){
+      this.firestore.setPuntajes(this.usuario, "trivia", this.contadorPuntos);
     }
   }
 

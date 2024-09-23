@@ -23,6 +23,10 @@
     height: 95vh;
     width: 60vw;
     flex-direction: column; 
+    background: url(../../assets/fondo_db.jpg);
+    background-size:contain;
+    background-repeat: no-repeat;
+    background-position: center; 
 }
 .container{
     display: flex;
@@ -33,8 +37,28 @@
     flex-direction: column; 
     padding-top: 2vh;
     padding-bottom: 2vh;
-    background: blueviolet;
+    position: relative;
     
+}
+.info{
+    background: rgb(153, 51, 204);
+    height: 70vh;
+    width: 60vw;
+}
+.vidas-container{
+    display: flex;
+    flex-direction: row; 
+    width: 3%;
+    height: 10%;
+    background: rgb(153, 51, 204);
+    position: absolute;
+    top: 0;
+    left: 5%;
+    padding: 5px;
+}
+.vida{
+    width: auto;
+    max-height: 100%;
 }
 .card {
     width: 15rem;
@@ -71,7 +95,7 @@
     width: 60vw;
     flex-direction: column; 
     padding-top: 2vh;
-    background: blueviolet;
+    /* background: blueviolet; */
     
 }
 .container-2{
@@ -82,7 +106,7 @@
     width: 60vw;
     flex-direction: row; 
     padding-top: 2vh;
-    background: blueviolet;
+    /* background: blueviolet; */
     
 }
 p{
@@ -127,11 +151,33 @@ p{
 }
 .finalJuego{
     display: flex;
+    background: rgb(153, 51, 204);
+    height: 70vh;
+    width: 50vw;
 }
 .ocultarJuego{
     display: none;
 }
-
+.correcto{
+    display: flex;
+}
+.incorrecto{
+    display: flex;
+}
+.new-game-button{
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.perdi_vida{
+    max-height: 35%;
+    width: auto;
+}
+.info_desc{
+    width: 70%;
+    margin: 25px;
+}
 
 
 
@@ -165,9 +211,21 @@ p{
         width: 20%;
     }
     .button-container{
-    position: absolute;
-    bottom: 75px;
+        position: absolute;
+        bottom: 75px;
+        bottom: 60px;
     }
+    .contenedor-principal {
+        width: auto;
+        max-height: 70vh;
+        background-size: cover; 
+        background-position: right center;
+        box-sizing: border-box;
+        margin: 0 auto;
+        padding: 10px;
+        overflow-y: auto;
+        margin-top: 20px;
+      }
     .contenedor-principal{
         height: 90%;
         width: 100%;
@@ -189,4 +247,22 @@ p{
         width: 120px;
         padding: 2px;
     }
+    .vidas-container{
+        height: 15%;
+        top: -14%;
+    }
+    .info{
+        height: 90%;
+        width: 100%;
+    }
+    .perdi_vida{
+        max-height: 20%;
+        width: auto;
+    }
+    .info_desc{
+        width: 95%;
+        margin: 10px;
+        font-size: small;
+    }
+    
 }

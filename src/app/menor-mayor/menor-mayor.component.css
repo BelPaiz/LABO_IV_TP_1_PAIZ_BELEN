@@ -24,8 +24,24 @@
     flex-direction: row; 
     padding-top: 5vh;
     padding-bottom: 5vh;
-    background: blueviolet;
+    background: rgb(153, 51, 204);
+    position: relative;
     
+}
+.vidas-container{
+    display: flex;
+    flex-direction: row; 
+    width: 3%;
+    height: 9%;
+    background: rgb(153, 51, 204);;
+    position: absolute;
+    top: 0;
+    right: 22%; 
+    padding: 5px;
+}
+.vida{
+    width: auto;
+    max-height: 100%;
 }
 .btn-primary{
     padding: 5px;
@@ -48,9 +64,24 @@
     height: 15vh;
     width: 60vw;
     flex-direction: row; 
-    padding-top: 5vh;
-    background: blueviolet;
-    
+    padding-top: 3vh;
+    background: rgb(153, 51, 204);;  
+    position: relative;
+}
+.puntos_container{
+    position: absolute;
+    background: #9c88ad;
+    left: 5%;
+    align-self: center;
+    height: 40%;
+    width: 22%;
+}
+.puntos{    
+    text-align: start;
+    margin-left: 5px;
+}
+.btnEnviar:active{
+    transform: scale(0.5);
 }
 .texto1{
     height: 100%;
@@ -75,24 +106,7 @@
 .btn-outline-primary:hover{
     background:  #5d2f82;
 }
-.puntos{
-    position: fixed;
-    align-self:flex-start;
-    left: 25%;
-    background: #9c88ad;
-    text-align: center;
-}
-.puntos2{
-    position: fixed;
-    align-self:flex-start;
-    left: 25%;
-    bottom: 25%;
-    background: #9c88ad;
-    text-align: center;
-}
-.btnEnviar:active{
-    transform: scale(0.5);
-}
+
 .ocultarJuego{
     display: none;
 }
@@ -106,6 +120,7 @@
     justify-content: center;
     align-items: center;
 }
+
 .new-game-container{
     display: flex;
     height: 25%;
@@ -115,6 +130,12 @@
 }
 .finalJuego{
     display: block;
+}
+.correcto{
+    display: flex;
+}
+.incorrecto{
+    display: flex;
 }
 .new-game-button{
     padding: 10px 20px;
@@ -151,12 +172,17 @@
         padding: 5px;
         margin: 5%;
     }
-    .puntos{   
-        left: 5%;
-        bottom: 16%;
+    .puntos_container{
+        left: 3%;
+        height: 60%;
+        width: 50%;
+        align-self: flex-end;
+        margin-bottom: 1%;
     }
-    .puntos2{
-        left: 5%;
-        bottom: 26%; 
+    .vidas-container{
+        top: 0;
+        height: 7%;
+        right: 35%; 
+        padding: 5px;
     }
 }

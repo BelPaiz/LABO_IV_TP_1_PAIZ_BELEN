@@ -77,8 +77,9 @@ input{
     align-self: flex-end;
 }
 .btnRellenar{
-    height: 100%;
-    width: 18%;
+   
+    width: auto;
+    max-height: 100%;;
    
 }
 

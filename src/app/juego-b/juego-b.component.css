@@ -1,0 +1,41 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
+    height: 100vh; 
+    padding: 5%;
+    background: url(../../assets/fondo7.jpg);
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-position: center; 
+}
+.grid{
+    display: flex;
+    flex-wrap: wrap;
+    border: solid 1px;
+    width: 300px;
+    height: 300px;
+}
+.grid div {
+    width: 20px;
+    height: 20px;
+}
+.tirador{
+    background-color: blue;
+}
+.invader{
+    background-color: purple;
+    border-radius: 10px;
+}
+.boom{
+    background-color: red;
+}
+.laser{
+    background-color: yellow;
+}

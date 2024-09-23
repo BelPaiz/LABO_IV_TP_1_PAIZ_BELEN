@@ -1,5 +1,10 @@
 <body>
     <div class="container" [ngClass]="{'ocultarJuego': ocultarJuego}">
+
+        <div class="vidas-container">
+            <img class="vida" *ngFor="let vida of vidas" [src]="vida" alt="vida">
+        </div>
+
         <div class="letras-container">
             <button class="letra" *ngFor="let letra of letras_en_uso"  (click)="letraSeleccion(letra)">{{letra}}</button>
         </div>
@@ -20,19 +25,20 @@
               </div>
         </div>
         <div class="new-game-container">
-            <button class=" btn btn-primary new-game-button" (click)="generarPalabra()">NUEVA PARTIDA</button>
+            <button class=" btn btn-primary new-game-button" (click)="nuevaPartida()">NUEVA PARTIDA</button>
         </div>
         <div class="pista-container">
             <p class="h6">PISTA TU PALABRA ES DE TIPO: {{palabraElegida.tipo.toUpperCase()}}</p>
         </div>
     </div>
+    
 
     <div class="container gano-container" [ngClass]="{'ganoJuego': ganoJuego}"> 
         <div class="text-container">
             <h1 class="display-1">¡GANASTE!</h1>
         </div>
         <div class="new-game-container">
-            <button class=" btn btn-primary new-game-button" (click)="generarPalabra()">NUEVA PARTIDA</button>
+            <button class=" btn btn-primary new-game-button" (click)="generarPalabra()">CONTINUAR...</button>
         </div>
     </div>
 
@@ -41,7 +47,7 @@
             <h1 class="display-1">¡PERDISTE!</h1>
         </div>
         <div class="new-game-container">
-            <button class=" btn btn-primary new-game-button" (click)="generarPalabra()">NUEVA PARTIDA</button>
+            <button class=" btn btn-primary new-game-button" (click)="nuevaPartida()">NUEVA PARTIDA</button>
         </div>
         <div class="pistaFinal-container">
             <p class="h6">TU PALABRA ERA: {{palabraElegida.palabra.toUpperCase()}}</p>

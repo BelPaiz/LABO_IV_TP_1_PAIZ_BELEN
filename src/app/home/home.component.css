@@ -2,7 +2,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Retro Gaming';
 }
 body{
     display: flex;
@@ -18,16 +17,16 @@ body{
 }
 .container{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
     justify-content: center;
     align-items:center;
     height: 90vh; 
     padding: 5%;
-    width: 40vw;
-
+    width: 90vw;
 }
 .card {
-    width: 100%; 
+    width: 40%; 
     height: 25%;
     overflow: hidden;
     margin: 5px;
@@ -37,18 +36,18 @@ body{
     height: 100%;
     padding: 5px;
 }
-@font-face {
-    font-family: 'Retro Gaming';
-    src: url(../../assets/fonts/Retro\ Gaming.ttf);
-}
+
 @media (max-width: 665px){
     .container{
+        flex-direction: column;
+        flex-wrap: nowrap;
         width: 95vw;
         padding-top: 5px;
         padding-bottom: 5px;
         margin-top: 15%;
     }
     .card {
-        height: 20%;
+        height: 10%;
+        width: 80%;
       }
 }

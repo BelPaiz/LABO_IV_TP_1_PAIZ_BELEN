@@ -24,8 +24,8 @@ export class LoginComponent {
     counts:number = 0;
     usuarioLogueado:string = "";
     error:string = "";
-    usuarioDefecto: string = "belen@mail.com";
-    passDefecto: string = "123456";
+    usuarioDefecto: string[] = ["belen@mail.com", "ki@mail.com"];
+    passDefecto: string[] = ["123456", "123456"];
 
     constructor(private firestore:FirestoreService,
       private auth:AuthenService,
@@ -46,9 +46,9 @@ export class LoginComponent {
     getData(){
       this.firestore.getData(this.counts, this.logsCol);
     }
-    rellenarUsuario(){
-      this.email = this.usuarioDefecto;
-      this.clave = this.passDefecto;
+    rellenarUsuario(index: number){
+      this.email = this.usuarioDefecto[index];
+      this.clave = this.passDefecto[index];
       this.limpiar();
     }
     limpiar(){

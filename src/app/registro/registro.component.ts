@@ -39,11 +39,24 @@ export class RegistroComponent {
       .then((resp) => {
         console.log(resp);
         this.router.navigate(['/home']);
-      }).catch((e) => {if(e = 'auth/email-already-in-use'){
-        this.error = "El Usuario ya existe - inicia sesion"
-        console.log(this.error)
+      }).catch((e) => {
+        switch (e.code) {
+          case 'auth/invalid-email':
+            this.error = "Email incorrecto";
+            break;
+          case 'auth/email-already-in-use':
+            this.error = "El email ya se encuentra registrado";
+            break;
+          case 'auth/weak-password':
+            this.error = "Al menos 6 caracteres";
+            break;
+          default:
+            this.error = "Ocurrió un error inesperado";
+            break;
+        
       }});
     }
+    
   }
   infoEmail(){
     this.ocultarp = true;
