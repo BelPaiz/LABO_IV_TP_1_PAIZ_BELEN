@@ -8,12 +8,7 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items:center;
-    height: 100vh; 
     padding: 5%;
-    background: url(../../assets/fondo7.jpg);
-    background-size:cover;
-    background-repeat: no-repeat;
-    background-position: center; 
 }
 .container{
     display: flex;

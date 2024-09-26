@@ -15,7 +15,6 @@ export const routes: Routes = [
     {path: 'registro', component: RegistroComponent},
     {path: 'quienSoy', component:QuienSoyComponent},
     
-    {path: 'invaders', component:JuegoBComponent},
     // {path: 'upload', component:UploadComponent},
     
     { 
@@ -39,6 +38,12 @@ export const routes: Routes = [
     { 
         path: 'dragon-trivia', 
         loadComponent: () => import('./juego-dragon-ball/juego-dragon-ball.component').then(c=>c.JuegoDragonBallComponent),
+        ...canActivate(() => redirectUnauthorizedTo(['/login']))
+    },
+
+    { 
+        path: 'atrapa-punto', 
+        loadComponent: () => import('./juego-b/juego-b.component').then(c=>c.JuegoBComponent),
         ...canActivate(() => redirectUnauthorizedTo(['/login']))
     },
 

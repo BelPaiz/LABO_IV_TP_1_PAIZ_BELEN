@@ -1,1 +1,41 @@
 /* You can add global styles to this file, and also import other style files */
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', 'Poppins-light';
+}
+body {
+    height: 100vh; 
+    width: 100vw;
+    background: url(assets/fondo7.jpg);
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-position: center; 
+}
+.card-body{
+    padding: 0.5rem;
+    background: url(assets/fondo-chat.jpg);
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-position: center; 
+}
+.contenedor-principal-DB{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    width: 60vw;
+    flex-direction: column; 
+    background: url(assets/fondo_db.jpg);
+    background-size:contain;
+    background-repeat: no-repeat;
+    background-position: center; 
+}
+@font-face {
+    font-family: 'Poppins';
+    src: url(assets/fonts/Poppins.ttf);
+}
+@font-face {
+    font-family: 'Poppins-light';
+    src: url(assets/fonts/Poppins-Light.ttf);
+}

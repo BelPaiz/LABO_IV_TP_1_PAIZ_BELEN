@@ -39,13 +39,26 @@
             </ul>
           </div>
 
+          <div class="card" style="width: 18rem;">
+            <div class="card-header">
+                <h5>ATRAPA EL PUNTO</h5>
+            </div>  
+            <ul class="list-group list-group-flush">
+                <ng-container *ngFor="let puntos of puntajes">
+                    <li class="list-group-item" *ngIf=" sumarContador(puntos.juego, 'atrapa-punto', contadorPropio)">
+                        {{puntos.usuario}} :  {{puntos.puntos}} puntos
+                    </li>
+                </ng-container>
+            </ul>
+          </div>
+
           <!-- <div class="card" style="width: 18rem;">
             <div class="card-header">
                 <h5>JUEGO PROPIO</h5>
             </div>  
             <ul class="list-group list-group-flush">
                 <ng-container *ngFor="let puntos of puntajes">
-                    <li class="list-group-item" *ngIf="puntos.juego === 'trivia'">
+                    <li class="list-group-item" *ngIf="puntos.juego === 'atrapa-punto'">
                         {{puntos.usuario}} :  {{puntos.puntos}} puntos
                     </li>
                 </ng-container>

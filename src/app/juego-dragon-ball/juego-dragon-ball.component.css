@@ -16,18 +16,18 @@
     background-repeat: no-repeat;
     background-position: center; 
 }
-.contenedor-principal{
+/* .contenedor-principal-DB{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 95vh;
+    height: 100vh;
     width: 60vw;
     flex-direction: column; 
     background: url(../../assets/fondo_db.jpg);
     background-size:contain;
     background-repeat: no-repeat;
     background-position: center; 
-}
+} */
 .container{
     display: flex;
     justify-content: center;

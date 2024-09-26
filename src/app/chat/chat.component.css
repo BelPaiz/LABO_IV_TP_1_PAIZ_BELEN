@@ -3,24 +3,16 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items:center;
-    height: 100vh; 
     padding: 5%;
-    background: url(../../assets/fondo7.jpg);
-    background-size:cover;
-    background-repeat: no-repeat;
-    background-position: center; 
 }
 .card-container{
     height: 60vh;
     width: 40vw;
     position: fixed;
 }
-.card-body{
-    padding: 0.5rem;
-    background: url(../../assets/fondo-chat.jpg);
-    background-size:cover;
-    background-repeat: no-repeat;
-    background-position: center; 
+p{
+    font-family: 'Poppins-light';
+    font-size: medium;
 }
 .card-header{
     background-color: rgb(102, 102, 243);

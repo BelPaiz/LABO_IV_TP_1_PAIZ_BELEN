@@ -1,6 +1,4 @@
 * {
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
 }
 body{
@@ -8,34 +6,147 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items:center;
-    height: 100vh; 
     padding: 5%;
-    background: url(../../assets/fondo7.jpg);
-    background-size:cover;
-    background-repeat: no-repeat;
-    background-position: center; 
 }
-.grid{
+.game-container {
     display: flex;
-    flex-wrap: wrap;
-    border: solid 1px;
-    width: 300px;
-    height: 300px;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    justify-content: center;
+    height: 80vh;
+    width: 50vw;
+    padding-top: 5vh;
+    padding-bottom: 5vh;
+    background: rgb(153, 51, 204);;
+    position: relative;
+    text-align: center;
+  }
+  .new-game-button{
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
 }
-.grid div {
-    width: 20px;
-    height: 20px;
+
+.container-texto{
+    margin-top: 2%;
+    text-align: center;
+    height: 20%;
+    width: 100%;   
 }
-.tirador{
-    background-color: blue;
-}
-.invader{
-    background-color: purple;
-    border-radius: 10px;
-}
-.boom{
+  
+.grid {
+    display: grid;
+    grid-template-columns: repeat(5, 80px);
+    grid-template-rows: repeat(5, 80px);
+    gap: 5px;
+    margin-top: 5px;
+  }
+  
+.caja {
+    width: 80px;
+    height: 80px;
+    background-color: rgb(75, 180, 75);
+    border: 3px solid blue;
+  }
+  
+.punto {
     background-color: red;
+    border:  3px solid yellow;
+    border-radius: 50%;
 }
-.laser{
-    background-color: yellow;
+.ocultarJuego{
+    display: none;
+}
+.gano-container{
+    display: none;
+}
+.text-container{
+    width: 100%;
+    height: 70%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.display-1{
+    margin-top: 10%;
+    height: 100%;
+}
+.ganoJuego{
+    display: block;
+}
+.vidas-container{
+    display: flex;
+    flex-direction: row; 
+    margin-top: 12px;
+    width: 3%;
+    height: 7%;
+    background: rgb(153, 51, 204);;
+    position: absolute;
+    top: 1%;
+    padding: 5px;
+}
+.vida{
+    width: auto;
+    max-height: 100%;
+}
+
+.btn-outline-primary{
+    --bs-btn-font-weight: 600;
+    background: #000;
+    margin: 5px;
+    width: 150px;
+    text-transform: uppercase;
+    font-size: large;
+}
+.btn-outline-primary:hover{
+    background:  #5d2f82;
+}
+@media (max-width: 665px){
+    .game-container{
+        height: 65vh;
+        width: 95vw;
+        margin-top: 30%;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .container-texto{
+        
+        height: 15%;
+    }
+    .btn-outline-primary{
+        --bs-btn-font-weight: 400;
+        margin: 3px;
+        width: 150px;
+    }
+    .btn-primary{
+        padding: 5px;
+        margin: 5%;
+    }
+    .vidas-container{
+        top: -15px;
+        height: 7%;
+        left: 5%; 
+        padding: 5px;
+    }
+    .grid {
+        grid-template-columns: repeat(5, 50px);
+        grid-template-rows: repeat(5, 50px);
+        gap: 5px;
+        margin-top: 5px;
+      }
+      
+    .caja {
+        width: 50px;
+        height: 50px;
+        background-color: rgb(75, 180, 75);
+        border: 3px solid blue;
+      }
+      
+    .punto {
+        background-color: red;
+        border:  3px solid yellow;
+        border-radius: 50%;
+    }
 }

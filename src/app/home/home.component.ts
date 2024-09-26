@@ -72,8 +72,8 @@ export class HomeComponent implements OnInit{
   irEncuesta(){
     this.router.navigate(['/encuesta'])
   }
-  irInvaders(){
-    this.router.navigate(['/invaders']);
+  irAtrapaPunto(){
+    this.router.navigate(['/atrapa-punto']);
   }
   traerImagen(imagen:string, path:string){
     const nombreImagen = path;
