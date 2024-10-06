@@ -6,7 +6,7 @@
             </div>  
             <ul class="list-group list-group-flush">
                 <ng-container *ngFor="let puntos of puntajes  | orderPuntos: 'desc'">
-                    <li class="list-group-item" *ngIf=" sumarContador(puntos.juego, 'ahorcado', contadorAhorcado)" >
+                    <li class="list-group-item" *ngIf=" sumarContador(puntos.juego, 'ahorcado')" >
                         {{puntos.usuario}} :  {{puntos.puntos}} puntos
                     </li>
                 </ng-container>
@@ -19,7 +19,7 @@
             </div>  
             <ul class="list-group list-group-flush">
                 <ng-container *ngFor="let puntos of puntajes">
-                    <li class="list-group-item" *ngIf="sumarContador(puntos.juego, 'menor-mayor', contadorMayMen)">
+                    <li class="list-group-item" *ngIf="sumarContador(puntos.juego, 'menor-mayor')">
                         {{puntos.usuario}} :  {{puntos.puntos}} puntos
                     </li>
                 </ng-container>
@@ -32,7 +32,7 @@
             </div>  
             <ul class="list-group list-group-flush">
                 <ng-container *ngFor="let puntos of puntajes">
-                    <li class="list-group-item" *ngIf=" sumarContador(puntos.juego, 'trivia', contadorTrivia)">
+                    <li class="list-group-item" *ngIf=" sumarContador(puntos.juego, 'trivia')">
                         {{puntos.usuario}} :  {{puntos.puntos}} puntos
                     </li>
                 </ng-container>
@@ -45,7 +45,7 @@
             </div>  
             <ul class="list-group list-group-flush">
                 <ng-container *ngFor="let puntos of puntajes">
-                    <li class="list-group-item" *ngIf=" sumarContador(puntos.juego, 'atrapa-punto', contadorPropio)">
+                    <li class="list-group-item" *ngIf=" sumarContador(puntos.juego, 'atrapa-punto')">
                         {{puntos.usuario}} :  {{puntos.puntos}} puntos
                     </li>
                 </ng-container>

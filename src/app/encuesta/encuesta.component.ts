@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FirestoreService } from '../services/firestore.service';
 import { Router } from '@angular/router';
 import { LoaderService } from '../services/loader.service';
@@ -9,7 +9,7 @@ import { AuthenService } from '../services/authen.service';
 @Component({
   selector: 'app-encuesta',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule],
   templateUrl: './encuesta.component.html',
   styleUrl: './encuesta.component.css'
 })
@@ -20,29 +20,14 @@ export class EncuestaComponent implements OnInit{
     public loader: LoaderService,
     private auth:AuthenService){}
 
-
-    nombre: string = "";
-    apellido: string = "";
-    edad!: number;
-    telefono!: number;
-    nivelSatisfaccion: string = "Es excelente";
-    valorSatisfecho: number = 10;
-    error:string = "";
-    opcion_seleccionada: string = "";
-    comentario:string = "";
-    usuario:string = "";
-
-    okNombre:boolean = false;
-    okApell:boolean = false;
-    okEdad:boolean = false;
-    okTel:boolean = false;
-    okOpc:boolean = false;
-    okComen:boolean = false;
-
+    usuario!:string;
+    nivelSatisfaccion: string = 'Es excelente';
+    error!:string;
+    form!:FormGroup;
     todoOk:boolean = false;
+    valorSatisfecho!: number;
 
   ngOnInit(){
-    this.setSatisfecho();
     this.auth.DatosAutenticacion().subscribe({
       next: (email) => {
         if(email){
@@ -53,48 +38,38 @@ export class EncuestaComponent implements OnInit{
         console.error(error);
       }
     });
+    this.form = new FormGroup({
+      nombre: new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z]+$')]),
+      apellido: new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z]+$')]),
+      edad: new FormControl('18', [Validators.required, Validators.min(18), Validators.max(99)]),
+      telefono: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
+      satisfaccion: new FormControl(10, [Validators.required, Validators.min(1), Validators.max(10)]),
+      recomendar: new FormControl('',[ Validators.required]),
+      comentario: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(200)])
+    });
+    
   }
 
-  setSatisfecho(){
-    if (this.valorSatisfecho === 1) {
+  setSatisfecho() {
+    this.valorSatisfecho = this.satisfaccion;
+    if (this.valorSatisfecho === 0) {
       this.nivelSatisfaccion = 'No me gusto';
     } else if (this.valorSatisfecho < 5) {
-      this.nivelSatisfaccion = 'Gusto poco';
-    } else if (this.valorSatisfecho === 5) {
-      this.nivelSatisfaccion = 'Un poco me gusto';
+      this.nivelSatisfaccion = 'Me gusto un poco';
+    } else if (this.valorSatisfecho === 6) {
+      this.nivelSatisfaccion = 'me gusto';
     } else if (this.valorSatisfecho < 10) {
       this.nivelSatisfaccion = 'Me gusto bastante';
     } else if (this.valorSatisfecho === 10) {
       this.nivelSatisfaccion = 'Es excelente';
     }
   }
-  VerificarCampos(){
-    if(this.nombre !== ""  && this.nombre.length > 1 && !/\d/.test(this.nombre)){
-      this.okNombre = true;
-    }
-    if(this.apellido !== ""  && this.apellido.length > 1 && !/\d/.test(this.apellido)){
-      this.okApell = true;
-    }
-    if(this.edad > 17 && this.edad < 100){
-      this.okEdad = true;
-    }
-    if(this.telefono > 1000000000 && this.telefono < 9999999999){
-      this.okTel = true;
-    }
-    if(this.opcion_seleccionada!== ""){
-      this.okOpc = true;
-    }
-    if(this.comentario !== ""  && this.comentario.length > 1){
-      this.okComen = true;
-    }
-    if(this.okComen && this.okOpc && this.okTel && this.okEdad && this.okApell && this.okNombre){
-      this.todoOk = true;
-    }
 
-  }
   enviar(){
-    this.VerificarCampos();
-    if(this.todoOk){
+    console.log(this.form.value);
+    console.log(this.form);
+    
+    if (this.form.valid) {
       const encuesta = {
         usuario: this.usuario,
         nombre: this.nombre,
@@ -102,44 +77,57 @@ export class EncuestaComponent implements OnInit{
         edad: this.edad,
         telefono: this.telefono,
         satisfaccion: this.nivelSatisfaccion,
-        recomedar: this.opcion_seleccionada,
-        comentario: this.comentario
-      }
+        comentario: this.comentario,
+        recomedar: this.recomnendar,
+        
+
+      };
+      console.log(encuesta);
       this.firestore.setEncuesta(encuesta);
       this.limpiarCampos();
-
-    }
-    else{
-      this.error = "Verifique la correcta integracion de los campos";
+    } else {
+      this.error = "Verifique la correcta integración de los campos";
+      console.log(this.form.get('nombre')?.errors);
+      console.log(this.form.get('apellido')?.errors);
+      console.log(this.form.get('edad')?.errors);
+      console.log(this.form.get('telefono')?.errors);
+      console.log(this.form.get('satisfaccion')?.errors);
+      console.log(this.form.get('recomendar')?.errors);
+      console.log(this.form.get('comentario')?.errors);
     }
   }
-  seleccionRecom(opcion: number){
-    switch(opcion){
-      case 1:
-        this.opcion_seleccionada = "Si la recomendaría";
-        break;
-        case 2:
-          this.opcion_seleccionada = "No la recomendaría";
-        break;
-    }
-    this.error = "";
-  } 
   limpiarError(){
     this.error = "";
   }
-  limpiarCampos(){
-    this.nombre = "";
-    this.apellido = "";
-    this.edad = 0;
-    this.telefono = 0;
-    this.nivelSatisfaccion = "Es excelente";
-    this.opcion_seleccionada= "";
-    this.comentario = "";
-    this.error = "Gracias por completar la encuesta";
-    setTimeout(()=> {this.salir()}, 500);
+  limpiarCampos() {
+    this.form.reset();
   }
   salir(){
     this.router.navigate(['/home']);
   }
+
+  get nombre() {
+    return this.form.get('nombre')?.value;
+  }
+  get apellido(){
+    return this.form.get('apellido')?.value;
+  }
+  get edad(){
+    return this.form.get('edad')?.value;
+  }
+  get telefono(){
+    return this.form.get('telefono')?.value;
+  }
+  get satisfaccion(){
+    return this.form.get('satisfaccion')?.value;
+  }
+  get recomnendar(){
+    return this.form.get('recomendar')?.value;
+  }
+  get comentario(){
+    return this.form.get('comentario')?.value;
+  }
+
+
 
 }

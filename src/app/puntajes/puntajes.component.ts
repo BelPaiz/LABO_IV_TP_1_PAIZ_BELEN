@@ -23,10 +23,7 @@ export class PuntajesComponent implements OnInit {
 
   puntajes: any = [];
   private subscription: Subscription = new Subscription();
-  contadorAhorcado:number = 0;
-  contadorMayMen: number = 0;
-  contadorTrivia: number = 0;
-  contadorPropio: number = 0;
+
 
 
   ngOnInit(){
@@ -44,14 +41,11 @@ export class PuntajesComponent implements OnInit {
   salir(){
     this.router.navigate(['/home']);
   }
-  sumarContador(juego: string, esperado:string, contador:number){
+  sumarContador(juego: string, esperado:string){
     let retorno = false;
     if(juego === esperado){
-      contador++;
-      if(contador < 11){
         retorno = true;
-      }
-    }
+    }  
     return retorno;
   }
 

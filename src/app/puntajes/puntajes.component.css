@@ -65,9 +65,12 @@ ul, li{
     }
     .container{
         flex-direction: column;
-        height: 90%; 
+        flex-wrap: nowrap;
+        
         padding: 5%;
-        width: 95vw;
+        
+        height: auto;
+        max-width: 100vw;
     }
     .card{
         height: auto;

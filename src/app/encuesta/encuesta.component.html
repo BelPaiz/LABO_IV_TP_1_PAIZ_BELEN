@@ -1,56 +1,58 @@
 <body>
     <div class="container">
-        <form class="form-container">
+        <form [formGroup]="form" class="form-container" (ngSubmit)="enviar()">
             <div class="input-group">
-                <span class="input-group-text">Nombre y Apellido: </span>
-                <input type="text" name="nombre" class="form-control" placeholder="Nombre" required [(ngModel)]="nombre" (click)="limpiarError()">
-                <input type="text" name="apellido" class="form-control" placeholder="Apellido" required [(ngModel)]="apellido" (click)="limpiarError()">
+              <span class="input-group-text">Nombre y Apellido: </span>
+              <input type="text" formControlName="nombre" class="form-control" placeholder="Nombre" (click)="limpiarError()">
+              <input type="text" formControlName="apellido" class="form-control" placeholder="Apellido" (click)="limpiarError()">
             </div>
+            
             <div class="input-group">
-                <span class="input-group-text">Edad: </span>
-                <input type="number" name="edad" class="form-control" min="18" max="99" required placeholder="Ingrese edad" [(ngModel)]="edad" (click)="limpiarError()">
+              <span class="input-group-text">Edad: </span>
+              <input type="number" formControlName="edad" class="form-control" placeholder="Ingrese edad" (click)="limpiarError()">
             </div>
+          
             <div class="input-group mb-3">
-                <span class="input-group-text">Telefono: </span>
-                <span class="input-group-text">+54 9</span>
-                <input type="number" class="form-control" placeholder="Ingrese teléfono" required name="tel"
-                    maxlength="10" pattern="[0-9]{10}" inputmode="numeric" [(ngModel)]="telefono" (click)="limpiarError()">
+              <span class="input-group-text">Telefono: </span>
+              <span class="input-group-text">+54 9</span>
+              <input type="number" formControlName="telefono" class="form-control" placeholder="Ingrese teléfono" pattern="[0-9]{10}" inputmode="numeric" (click)="limpiarError()">
             </div>
-              
-            <div class="input-group descripcion">
-                <label  class="input-group-text pregunta">En una escala del 1 al 10, cuanto te gusto la Sala de Juegos</label>
-                <div class="range-group">
-                    <input type="range" name="satisf" class="form-range input-group-text" min="1" max="10" step="1" id="customRange3" [(ngModel)]="valorSatisfecho" (input)="setSatisfecho()">
-                    <label for="customRange3" class="input-group-text">{{nivelSatisfaccion}}</label>
-                </div>
-            </div>   
             
             <div class="input-group descripcion">
-                <label class="input-group-text pregunta">¿Recomendarias la Sala de Juegos a un amigo?</label>
-                <div class="pregunta">
-                    <label class="opcion">
-                        <input type="radio" name="opcion" (click)="seleccionRecom(1)">
-                        Si la recomendaría
-                    </label>
-                    <label class="opcion">
-                        <input type="radio" name="opcion" (click)="seleccionRecom(2)">
-                        No la recomendaría
-                      </label>
-                  </div>
+              <label class="input-group-text pregunta">En una escala del 1 al 10, cuanto te gusto la Sala de Juegos</label>
+              <div class="range-group">
+                <input type="range" formControlName="satisfaccion" class="form-range input-group-text" min="0" max="10" step="2" id="customRange3" (input)="setSatisfecho()">
+                <label for="customRange3" class="input-group-text">{{nivelSatisfaccion}}</label>
+              </div>
+            </div> 
+          
+            <div class="input-group descripcion">
+              <label class="input-group-text pregunta">¿Recomendarias la Sala de Juegos a un amigo?</label>
+              <div class="pregunta">
+                <label class="opcion">
+                  <input type="radio" formControlName="recomendar" value="si">
+                  Si la recomendaría
+                </label>
+                <label class="opcion">
+                  <input type="radio" formControlName="recomendar" value="no">
+                  No la recomendaría
+                </label>
+              </div>
             </div>
-
+          
             <div class="input-group">
-                <label class="input-group-text pregunta">Por favor, dejanos un comentario o sugerencia</label>
-                <textarea name="comentario" class="form-control" rows="4" maxlength="200" required placeholder="Dejanos tu comentario" [(ngModel)]="comentario" (click)="limpiarError()"></textarea>
+              <label class="input-group-text pregunta">Por favor, dejanos un comentario o sugerencia</label>
+              <textarea formControlName="comentario" class="form-control" rows="4" required placeholder="Dejanos tu comentario" (click)="limpiarError()"></textarea>
             </div>
             
             <div class="container-buttons">
-                <button class="btn-outline-primary" (click)="enviar()" > ENVIAR </button>
-                <div class="dataError">
-                  <h2 *ngIf="error">{{error}}</h2>
-                </div>
+              <button class="btn-outline-primary" type="submit">ENVIAR</button>
+              <div class="dataError">
+                <h2 *ngIf="error">{{error}}</h2>
               </div>
-        </form>
+            </div>
+          </form>
+          
         <div class="button-container" >
             <button class="btn btn-outline-primary" (click)="salir()" >SALIR</button> 
           </div>
